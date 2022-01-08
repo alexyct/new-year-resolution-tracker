@@ -3,36 +3,39 @@
   align-items: flex-end;
   justify-content: flex-start;
   text-align: center;
-  max-width: 80%;
+  max-width: 90%;
   margin: auto;
   margin-top: 45vh;
   flex-wrap: wrap;
+  font-size: 1rem;
 }
 
 .resolutionText {
   display: inline-block;
   margin: 0;
-  font-size: 1.2rem;
+  font-size: inherit;
 }
 
 .inputWrapper {
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: inherit;
   margin: 0 0.25em;
-  width: 3rem;
+  width: 3em;
 }
 
 .selectWrapper {
   display: inline-block;
+  text-align: center;
   margin: 0 0.25em;
   margin-top: 1em;
-  font-size: 1.2rem;
+  font-size: inherit;
   font-weight: bold;
   color: var(--green);
 }
 
 .buttonWrapper {
-  width: 10rem;
+  width: 10em;
+  font-size: inherit;
   text-align: center;
   margin: 5rem auto 0 auto;
   font-weight: normal;
