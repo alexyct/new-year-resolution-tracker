@@ -1,0 +1,133 @@
+/* @import "App.module.css"; */
+
+.button {
+  cursor: pointer;
+  font: inherit;
+  font-weight: inherit;
+  padding: 0.8em 0.8em;
+  width: 100%;
+  min-width: 3em;
+
+  /* DEFAULT */
+  background-color: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 0.75em;
+  transition: 100ms background-color ease-in;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover {
+  background-color: var(--blue-shade);
+}
+
+/* SIZE */
+
+.small {
+  padding: 0.5em 0.5em;
+}
+
+.medium {
+  padding: 0.8em 0.8em;
+}
+
+.large {
+  padding: 1em 1em;
+}
+
+.narrow {
+  width: auto;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+/* TYPES */
+
+.primary {
+  color: #fff !important;
+}
+
+.secondary {
+  border: 3px solid;
+  background-color: #fff !important;
+  color: var(--blue);
+}
+
+.tertiary {
+  color: var(--blue);
+  background-color: transparent !important;
+}
+
+/* COLOR */
+
+.blue {
+  color: var(--blue);
+  background-color: var(--blue);
+}
+
+.blue:hover,
+.blue:focus {
+  color: var(--blue-shade);
+  background-color: var(--blue-shade);
+}
+
+.orange {
+  color: var(--orange);
+  background-color: var(--orange);
+}
+
+.orange:hover,
+.orange:focus {
+  color: var(--orange-shade);
+  background-color: var(--orange-shade);
+}
+
+.red {
+  color: var(--red);
+  background-color: var(--red);
+}
+
+.red:hover,
+.red:focus {
+  color: var(--red-shade);
+  background-color: var(--red-shade);
+}
+
+.grey {
+  color: var(--grey);
+  background-color: var(--grey);
+}
+
+.grey:hover,
+.grey:focus {
+  color: var(--grey-shade);
+  background-color: var(--grey-shade);
+}
+
+.black {
+  color: var(--black);
+  background-color: var(--black);
+}
+
+.black:hover,
+.black:focus {
+  color: var(--black-shade);
+  background-color: var(--black-shade);
+}
+
+/* SHAPE */
+
+.round {
+  border-radius: 10em;
+}
+
+/* Width */
+
+.button[width="content"] {
+  width: auto;
+}

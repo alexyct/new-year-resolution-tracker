@@ -1,0 +1,73 @@
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  padding: 0em 1.8em 0em 0.2em;
+  border: none;
+  border-bottom: 0.15em solid lightgrey;
+  /* margin: 0.15em 0; */
+  width: 100%;
+  /* background-color: lightpink; */
+  text-align: center;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.select::-ms-expand {
+  display: none;
+}
+
+.select:focus {
+  outline: none;
+  border-bottom: 0.15em solid var(--green);
+}
+
+/* .option {
+  font: inherit;
+  padding: 1em 1.5em;
+  border: 0;
+  width: 100%;
+  background-color: white;
+} */
+
+.customArrow {
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.1em;
+  display: block;
+  background: white;
+  height: 80%;
+  width: 2em;
+  pointer-events: none;
+  /* border-radius: 15em; */
+  /* border: 1px solid lightgrey; */
+}
+
+.customArrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: solid grey;
+  border-width: 0 0.15em 0.15em 0;
+  display: inline-block;
+  padding: 0.12em;
+  transform: rotate(45deg) translate(-50%, -50%);
+  -webkit-transform: rotate(45deg) translate(-50%, -50%);
+}
+
+.customArrow[hide="true"]::after {
+  display: none;
+}
+
+.round {
+  border-radius: 15em;
+}
