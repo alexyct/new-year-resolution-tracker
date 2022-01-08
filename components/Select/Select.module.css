@@ -13,7 +13,7 @@
   /* margin: 0.15em 0; */
   width: 100%;
   /* background-color: lightpink; */
-  text-align: center;
+  text-align: inherit;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -45,7 +45,7 @@
   display: block;
   background: white;
   height: 80%;
-  width: 2em;
+  width: 1em;
   pointer-events: none;
   /* border-radius: 15em; */
   /* border: 1px solid lightgrey; */
