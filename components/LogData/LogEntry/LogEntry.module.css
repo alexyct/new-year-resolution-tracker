@@ -1,0 +1,16 @@
+
+.entryWrapper {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.selectWrapper {
+  color: var(--green);
+  font-size: 0.9rem;
+  font-weight: bold;
+  width: 9em;
+  text-align: left;
+}
