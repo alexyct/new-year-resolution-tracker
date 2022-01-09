@@ -1,0 +1,20 @@
+:root {
+  --blue: #3366ff;
+  --blue-shade: #3f66db;
+  --blue-highlight: #577ff6;
+  --orange: #ffa800;
+  --orange-shade: #ff9900;
+  --orange-highlight: #f8ba1b;
+  --red: #ff4d00;
+  --red-shade: #e94b07;
+  --red-highlight: #fc512c;
+  --grey: #7c7c7c;
+  --grey-shade: #595959;
+  --grey-highlight: #8c8c8c;
+  --black: #0b0b0b;
+  --black-shade: #000000;
+}
+
+html {
+  font-size: 16px;
+}

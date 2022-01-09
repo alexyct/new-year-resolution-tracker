@@ -1,0 +1,100 @@
+.inputWrapper {
+  /* margin: 1rem 0; */
+  font: inherit;
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  margin: 0.2em 0;
+  color: grey;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* .input[type="checkbox"] {
+  margin: 0;
+  width: auto;
+  display: inline-block;
+} */
+
+.input {
+  font: inherit;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-radius: 0.3em;
+  padding: 0.5em;
+  width: 100%;
+  margin: 1px 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  margin: 0;
+  border: 2px solid #3456bf;
+}
+
+.small {
+  padding: 0.3em;
+}
+
+.medium {
+  padding: 0.5em;
+}
+
+.large {
+  padding: 1em;
+}
+
+.round {
+  border-radius: 10em;
+}
+
+.input[type="checkbox"] {
+  /* -webkit-appearance:none; */
+  display: inline-block !important;
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid #555;
+  margin: 0;
+}
+
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* .input[type="checkbox"]:focus {
+  outline: 1px solid #3456bf;
+} */
+
+.warning {
+  text-align: center;
+  display: block;
+  color: red;
+  margin: 0.3em auto 0.5em auto;
+  padding: 0 0.3em;
+  font-size: 0.7em;
+}
+
+.custom {
+  margin: 0;
+  border: none;
+  border-bottom: 0.15em solid lightgrey;
+  border-radius: 0;
+  color: var(--green);
+  font-weight: bold;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.custom:focus {
+  border: none;
+  border-bottom: 0.15em solid var(--green);
+}

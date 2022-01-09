@@ -1,0 +1,26 @@
+.logData {
+  margin-top: 10rem;
+}
+
+.dateWrapper {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.date {
+  margin: 0;
+  text-align: center;
+}
+
+.entries {
+  width: 60%;
+  margin: auto;
+}
+
+.buttonWrapper {
+  font-size: 0.9rem;
+  width: 10rem;
+  margin: auto;
+  margin-top: 2rem;
+  text-align: center;
+}
