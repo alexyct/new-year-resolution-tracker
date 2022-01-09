@@ -17,6 +17,7 @@ export default async function handler(req, res) {
       const resolution = await db.collection('resolutions').insertOne({
         type: req.body.type,
         frequency: req.body.frequency,
+        quantity: req.body.quantity,
         units: req.body.units,
       });
       return res.status(200).json(resolution);
