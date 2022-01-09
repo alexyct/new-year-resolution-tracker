@@ -9,6 +9,7 @@ export default async function handler(req, res) {
   } = req;
 
   // /api/logs/[userId]?range=${last1/last7}.
+  // "api/logs/3859234758?range=last1"
   var start =
     range === 'last1'
       ? new Date().setHours(0, 0, 0, 0)
@@ -31,8 +32,8 @@ export default async function handler(req, res) {
     case 'POST': {
       const log = await db.collection('logs').insertOne({
         type: req.body.type,
-        startDateTime: startDateTime,
-        endDateTime: new Date(req.body.startDateTime),
+        startDateTime: new Date(req.body.startDateTime),
+        endDateTime: new Date(req.body.endDateTime),
         resolutionId: ObjectId(req.body.resolutionId),
         userId: ObjectId(userId),
       });
