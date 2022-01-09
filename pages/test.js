@@ -1,11 +1,19 @@
-import Test from '@/components/Test.js';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
-function TestPage() {
+export default function TestPage() {
+  const { data: session } = useSession();
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user.email} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    );
+  }
   return (
     <>
-      <Test />
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
     </>
   );
 }
-
-export default TestPage;
