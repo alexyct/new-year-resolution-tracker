@@ -13,5 +13,13 @@ export default async function handler(req, res) {
         .toArray();
       return res.status(200).json(resolutions);
     }
+    case 'POST': {
+      const resolution = await db.collection('resolutions').insertOne({
+        type: req.body.type,
+        frequency: req.body.frequency,
+        units: req.body.units,
+      });
+      return res.status(200).json(resolution);
+    }
   }
 }

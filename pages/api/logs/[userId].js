@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   var start =
     range === 'last1'
       ? new Date().setHours(0, 0, 0, 0)
-      : new Date(new Date() - 7 * 60 * 60 * 24 * 1000);
+      : new Date(new Date().setHours(0, 0, 0, 0) - 6 * 60 * 60 * 24 * 1000);
 
   switch (req.method) {
     case 'GET': {
