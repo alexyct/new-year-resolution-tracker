@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import React, { useState } from 'react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
-import SetResolution from "@/components/SetResolution/SetResolution";
+import SetResolution from '@/components/SetResolution/SetResolution';
 
-const index = () => {
+const Index = () => {
   const { data: session } = useSession();
 
-  const [unit, setUnit] = useState("hours");
+  const [unit, setUnit] = useState('hours');
   const [frequency, setFrequency] = useState(2);
-  const [frequencyType, setFrequencyType] = useState("week");
+  const [frequencyType, setFrequencyType] = useState('week');
 
   const userData = {
-    type: "exercise",
+    type: 'exercise',
     units: unit,
     quantity: frequency,
     frequency: frequencyType,
@@ -31,7 +31,7 @@ const index = () => {
   };
 
   const buttonClickedHandler = () => {
-    signIn("google");
+    signIn('google');
   };
 
   let page = null;
@@ -52,4 +52,4 @@ const index = () => {
   return <div>{page}</div>;
 };
 
-export default index;
+export default Index;
