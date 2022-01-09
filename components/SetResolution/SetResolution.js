@@ -5,25 +5,11 @@ import Select from "@/components/Select/Select";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 
-const SetResolution = () => {
+const SetResolution = (props) => {
   const unitOptions = ["hours", "minutes", "times"];
   const frequencyOptions = ["day", "week", "month"];
 
-  const [unit, setUnit] = useState("hours");
-  const [frequency, setFrequency] = useState(2);
-  const [frequencyType, setFrequencyType] = useState("week");
-
-  const unitChangedHandler = (e) => {
-    setUnit(e.target.value);
-  };
-
-  const frequencyChangedHandler = (e) => {
-    setFrequency(e.target.value);
-  };
-
-  const frequencyTypeChangedHandler = (e) => {
-    setFrequencyType(e.target.value);
-  };
+  const { units, quantity, frequency } = props.userData;
 
   return (
     <div>
@@ -33,30 +19,30 @@ const SetResolution = () => {
           <Input
             custom
             type="number"
-            value={frequency}
-            changed={frequencyChangedHandler}
+            value={quantity}
+            changed={props.frequencyChangedHandler}
           />
         </div>
         <div className={classes.selectWrapper}>
           <Select
-            selected={unit}
+            selected={units}
             options={unitOptions}
-            changed={unitChangedHandler}
-          ></Select>
+            changed={props.unitChangedHandler}
+          />
         </div>
         <div className={classes.frequencyWrapper}>
           <h3 className={classes.resolutionText}>every</h3>
           <div className={classes.selectWrapper}>
             <Select
               options={frequencyOptions}
-              changed={frequencyTypeChangedHandler}
-              selected={frequencyType}
-            ></Select>
+              changed={props.frequencyTypeChangedHandler}
+              selected={frequency}
+            />
           </div>
         </div>
       </div>
       <div className={classes.buttonWrapper}>
-        <Button tertiary narrow>
+        <Button tertiary narrow clicked={props.buttonClickedHandler}>
           continue
         </Button>
       </div>
