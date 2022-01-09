@@ -1,33 +1,34 @@
-import clientPromise from '@/lib/mongodb';
-import { ObjectId } from 'mongodb';
+import clientPromise from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   const client = await clientPromise;
-  const db = client.db('tracker');
+  const db = client.db("tracker");
   const {
     query: { userId, type },
   } = req;
 
   // /api/logs/[userId]?type=${latest/all}.
   switch (req.method) {
-    case 'GET': {
-      if (type === 'latest') {
+    case "GET": {
+      if (type === "latest") {
         const reports = await db
-          .collection('reports')
+          .collection("reports")
           .find({ userId: ObjectId(userId) })
           .sort({ _id: -1 })
           .limit(1);
+        return res.status(200).json(reports);
       } else {
         const reports = await db
-          .collection('reports')
+          .collection("reports")
           .find({ userId: ObjectId(userId) })
           .sort({ _id: -1 })
           .toArray();
+        return res.status(200).json(reports);
       }
-      return res.status(200).json(reports);
     }
-    case 'POST': {
-      const log = await db.collection('reports').insertOne({
+    case "POST": {
+      const log = await db.collection("reports").insertOne({
         userId: ObjectId(userId),
         resolutionId: ObjectId(req.body.resolutionId),
         progress: req.body.progress,
@@ -36,9 +37,9 @@ export default async function handler(req, res) {
       });
       return res.status(200).json(log);
     }
-    case 'PATCH': {
+    case "PATCH": {
       const report = await db
-        .collection('reports')
+        .collection("reports")
         .findOneAndUpdate(
           { _id: ObjectId(req.body.reportId) },
           { $set: { memo: req.body.memo } }
