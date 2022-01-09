@@ -31,8 +31,8 @@ export default async function handler(req, res) {
     case 'POST': {
       const log = await db.collection('logs').insertOne({
         type: req.body.type,
-        startDateTime: req.body.startDateTime,
-        endDateTime: req.body.endDateTime,
+        startDateTime: new Date(req.body.startDateTime).toISOString(),
+        endDateTime: new Date(req.body.endDateTime).toISOString(),
         resolutionId: ObjectId(req.body.resolutionId),
         userId: ObjectId(userId),
       });
