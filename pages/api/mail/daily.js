@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).send({
@@ -32,12 +33,4 @@ export default async function handler(req, res) {
       error: 'Could not send the email',
     });
   }
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log('Email sent: ' + info.response);
-  //     return res.status(200).json('Latest');
-  //   }
-  // });
 }

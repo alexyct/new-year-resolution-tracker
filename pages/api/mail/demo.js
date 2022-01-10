@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).send({
@@ -9,7 +10,7 @@ export default async function handler(req, res) {
   let mailOptions = {
     from: 'newyearresolutiontracker@gmail.com',
     to: req.body.emailTo,
-    subject: 'New year resolution tracker - your weekly report is here!',
+    subject: '[DEMO] New year resolution tracker - your weekly report is here!',
     text: 'Here is a summary of your progress this week. Here are some insights on how you can better acheive your goals. Click here to add a memo/reflection on your progress this week.',
     html: '<div><p>Here is a summary of your progress this week</p><p>Here are some insights on how you can better acheive your goals.</p><p>Click <a href="https://nyrtracker.vercel.app">here</a> to add a memo/reflection on your progress this week.</p></div>',
   };
