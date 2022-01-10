@@ -1,7 +1,5 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 
-// import { sendMail } from '@/lib/mail.js';
-
 export default function TestPage() {
   const { data: session } = useSession();
 
