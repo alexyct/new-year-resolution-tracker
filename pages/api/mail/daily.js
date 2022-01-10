@@ -23,14 +23,8 @@ export default async function handler(req, res) {
   });
 
   try {
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-        return res.status(400).json({ sent: 'nope' });
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent: ' + info.response);
     return res.status(200).json({ sent: 'ok' });
   } catch (error) {
     console.error(`Failed to send email: `, error);
