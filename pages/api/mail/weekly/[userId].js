@@ -3,14 +3,20 @@ import nodemailer from 'nodemailer';
 import { ObjectId } from 'mongodb';
 import clientPromise from '@/lib/mongodb';
 
-function WeeklyMail({ logs, name }) {
+function WeeklyMail({ name, summary, insights }) {
   return (
     <div>
       <p>Hi {name}! Here is a pretty visual to show your progress this week:</p>
-      {logs.map((log) => (
+      {/* {logs.map((log) => (
         <p key={log._id}>{log.type}</p>
-      ))}
+      ))} */}
+      <p>{summary}</p>
       <p>Some insights to help you better acheive your goals:</p>
+      <ul>
+        {insights.map((insight) => (
+          <li key={insight.key}>{insight.content}</li>
+        ))}
+      </ul>
       <p>
         Click <a href="https://nyrtracker.vercel.app">here</a> to write a memo
         on your progress this week. Journaling is a great way to improve your
@@ -50,7 +56,11 @@ export default async function handler(req, res) {
   const summary = 'this is a summary based on the logs';
 
   // Generate insights
-  const insights = 'these are some insights based on the logs';
+  const insights = [
+    { key: 1, content: 'you should exercise earlier' },
+    { key: 2, content: 'you should exercise for 5 minutes every day' },
+    { key: 3, content: 'you should exercise for 5 minutes every day' },
+  ];
 
   // Save report to database
   const report = await db.collection('reports').insertOne({
@@ -68,7 +78,7 @@ export default async function handler(req, res) {
     subject: 'You weekly report is here!',
     text: 'Here is a summary of your progress this week.',
     html: await ReactDOMServer.renderToString(
-      <WeeklyMail logs={logs} name={req.body.name} />
+      <WeeklyMail name={req.body.name} summary={summary} insights={insights} />
     ),
   };
   let transporter = nodemailer.createTransport({
