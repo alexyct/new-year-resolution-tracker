@@ -6,48 +6,73 @@ import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 
 const SetResolution = (props) => {
-  const unitOptions = ["hours", "minutes", "times"];
+  const unitOptions = ["hours", "minutes"];
   const frequencyOptions = ["day", "week", "month"];
+
+  const [viewedPrompt, setViewedPrompt] = useState(false);
 
   const { units, quantity, frequency } = props.userData;
 
-  return (
-    <div>
-      <div className={classes.resolution}>
-        <h3 className={classes.resolutionText}>I will exercise for </h3>
-        <div className={classes.inputWrapper}>
-          <Input
-            custom
-            type="number"
-            value={quantity}
-            changed={props.frequencyChangedHandler}
-          />
-        </div>
-        <div className={classes.selectWrapper}>
-          <Select
-            selected={units}
-            options={unitOptions}
-            changed={props.unitChangedHandler}
-          />
-        </div>
-        <div className={classes.frequencyWrapper}>
-          <h3 className={classes.resolutionText}>every</h3>
-          <div className={classes.selectWrapper}>
-            <Select
-              options={frequencyOptions}
-              changed={props.frequencyTypeChangedHandler}
-              selected={frequency}
-            />
+  const setResolutionClickedHandler = () => {
+    setViewedPrompt(true);
+  };
+
+  let page = null;
+  if (!viewedPrompt) {
+    page = (
+      <div className={classes.promptBackdrop}>
+        <div className={classes.prompt}>
+          <h1>What's your new year's resolution?</h1>
+          <p>Log your daily exercise and we will keep track of your progress</p>
+          <div className={classes.buttonWrapper}>
+            <Button tertiary narrow clicked={setResolutionClickedHandler}>
+              Set resolution &#10132;
+            </Button>
           </div>
         </div>
       </div>
-      <div className={classes.buttonWrapper}>
-        <Button tertiary narrow clicked={props.buttonClickedHandler}>
-          continue
-        </Button>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    page = (
+      <>
+        <div className={classes.resolution}>
+          <h3 className={classes.resolutionText}>I will exercise for </h3>
+          <div className={classes.inputWrapper}>
+            <Input
+              custom
+              type="number"
+              value={quantity}
+              changed={props.frequencyChangedHandler}
+            />
+          </div>
+          <div className={classes.selectWrapper}>
+            <Select
+              selected={units}
+              options={unitOptions}
+              changed={props.unitChangedHandler}
+            />
+          </div>
+          <div className={classes.frequencyWrapper}>
+            <h3 className={classes.resolutionText}>every</h3>
+            <div className={classes.selectWrapper}>
+              <Select
+                options={frequencyOptions}
+                changed={props.frequencyTypeChangedHandler}
+                selected={frequency}
+              />
+            </div>
+          </div>
+        </div>
+        <div className={classes.buttonWrapper}>
+          <Button tertiary narrow clicked={props.buttonClickedHandler}>
+            continue
+          </Button>
+        </div>
+      </>
+    );
+  }
+
+  return <div className={classes.setResolution}>{page}</div>;
 };
 
 function getTextWidth(inputText) {
