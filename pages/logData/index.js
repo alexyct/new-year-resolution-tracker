@@ -4,11 +4,22 @@ import { useSession } from "next-auth/react";
 
 import LogData from "@/components/LogData/LogData";
 
+const convertDayFormat = (date) => {
+  // week 1:
+  var dd = String(date.getDate()).padStart(2, "0");
+  var mm = String(date.getMonth() + 1).padStart(2, "0");
+  var yyyy = date.getFullYear();
+  date = yyyy + "-" + mm + "-" + dd;
+  return date;
+};
+
 const Index = () => {
   const session = useSession();
   // TODO: get date from history
-  let date = new Date();
-  date.setHours(0, 0, 0, 0);
+  // let date = new Date();
+  let today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const [date, setDate] = useState(today);
   const [exercise, setExercise] = useState("workout");
   const [startTime, setStartTime] = useState("00:00");
   const [endTime, setEndTime] = useState("00:00");
@@ -29,6 +40,13 @@ const Index = () => {
 
   const endTimeChangedHandler = (e) => {
     setEndTime(e.target.value);
+  };
+
+  const dateChangedHandler = (e) => {
+    let tempDate = e.target.value.split("-");
+    tempDate = new Date(tempDate[0], tempDate[1] - 1, tempDate[2]);
+    tempDate.setHours(0, 0, 0, 0);
+    setDate(tempDate);
   };
 
   const logButtonClickedHandler = () => {
@@ -55,12 +73,13 @@ const Index = () => {
   return (
     <div>
       <LogData
-        date={date}
+        date={convertDayFormat(date)}
         logData={logData}
         exerciseChangedHandler={exerciseChangedHandler}
         startTimeChangedHandler={startTimeChangedHandler}
         endTimeChangedHandler={endTimeChangedHandler}
         logButtonClickedHandler={logButtonClickedHandler}
+        dateChangedHandler={dateChangedHandler}
       />
     </div>
   );
