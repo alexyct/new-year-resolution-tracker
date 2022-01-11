@@ -3,6 +3,25 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 export default function TestPage() {
   const { data: session } = useSession();
 
+  const sendWeeklyEmail = async () => {
+    try {
+      const res = await fetch(`/api/mail/weekly/${session.user.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: session.user.name,
+          emailTo: session.user.email,
+        }),
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      return;
+    }
+  };
+
   const sendDemoEmail = async () => {
     try {
       const res = await fetch(`/api/mail/demo`, {
@@ -62,6 +81,13 @@ export default function TestPage() {
         </p>
         <button onClick={() => sendDailyEmail()}>
           Send Reminder Email Now
+        </button>
+        <p>
+          If you actually bothered to use the app and logged your data for a few
+          days, you can get your sunday weekly report now with this button:
+        </p>
+        <button onClick={() => sendWeeklyEmail()}>
+          Send Weekly Report Now
         </button>
       </>
     );

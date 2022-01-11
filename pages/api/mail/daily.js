@@ -1,4 +1,17 @@
-const nodemailer = require('nodemailer');
+import ReactDOMServer from 'react-dom/server';
+import nodemailer from 'nodemailer';
+
+function DailyMail({ email }) {
+  return (
+    <div>
+      <p>
+        Hi {email}! Click{' '}
+        <a href="https://nyrtracker.vercel.app/logData">here</a> to log your
+        data
+      </p>
+    </div>
+  );
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -12,7 +25,10 @@ export default async function handler(req, res) {
     to: req.body.emailTo,
     subject: 'Log data for your new your resolution tracking!',
     text: 'Click here to log your data',
-    html: '<p>Click <a href="https://nyrtracker.vercel.app/logData">here</a> to log your data</p>',
+    // html: '<p>Click <a href="https://nyrtracker.vercel.app/logData">here</a> to log your data</p>',
+    html: await ReactDOMServer.renderToString(
+      <DailyMail email={req.body.emailTo} />
+    ),
   };
 
   let transporter = nodemailer.createTransport({
