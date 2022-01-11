@@ -18,6 +18,7 @@ const Index = () => {
   const [frequency, setFrequency] = useState(2);
   const [frequencyType, setFrequencyType] = useState("week");
   const [week, setWeek] = useState(getCurrWeek());
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const [isLoading, setIsLoading] = useState("false");
 
@@ -71,7 +72,19 @@ const Index = () => {
     return out;
   };
 
-  console.log(weekToDate(week));
+  const resizeHandler = () => {
+    const temp = document.getElementById("overview_wrap").clientWidth;
+    setTimeout(() => {
+      setWindowWidth(temp);
+    }, 200);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", resizeHandler);
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, [windowWidth]);
 
   useEffect(() => {
     if (session && status !== "loading") {
@@ -115,6 +128,7 @@ const Index = () => {
         signOutClickedHandler={signOutClickedHandler}
         incrementWeek={incrementWeek}
         week={week}
+        width={windowWidth}
       />
     );
   } else {

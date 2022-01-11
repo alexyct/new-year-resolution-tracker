@@ -37,7 +37,8 @@ function drawVisualization() {
 const BarGraph = (props) => {
   const [chart, setChart] = useState(null);
   useEffect(() => {
-    if (props.google && !chart) {
+    console.log('redrawing')
+    if (props.google) {
       const data = google.visualization.arrayToDataTable(props.data);
       // const data = new google.visualization.DataTable();
       // data.addColumn("string", "Day");
@@ -62,7 +63,15 @@ const BarGraph = (props) => {
           textStyle: { color: "black" },
         },
         bar: { groupWidth: "75%" },
-        colors: ["red", "grey", "#63CA6E", "#3CB9EE", "#B472E8", "#E87272", "#FF9052"],
+        colors: [
+          "red",
+          "grey",
+          "#63CA6E",
+          "#3CB9EE",
+          "#B472E8",
+          "#E87272",
+          "#FF9052",
+        ],
         seriesType: "bars",
         series: {
           0: {
@@ -90,7 +99,7 @@ const BarGraph = (props) => {
 
       setChart(newChart);
     }
-  }, [props.google, chart]);
+  }, [props.google, props.width]);
 
   return (
     <div>

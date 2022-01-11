@@ -24,7 +24,7 @@ const Overview = (props) => {
   diffToGoal = Math.abs(diffToGoal);
   let hoursDiff = Math.floor(diffToGoal);
   let minutesDiff = Math.floor((diffToGoal % 1) * 60);
-
+  
   return (
     <div>
       <h1 className={classes.overviewTitle}>This week's average</h1>
@@ -42,7 +42,7 @@ const Overview = (props) => {
           {hoursDiff}h {minutesDiff}m from last week
         </h2>
       </div>
-      <BarGraph google={props.google} data={props.data} />
+      <BarGraph google={props.google} data={props.data} width={props.width} />
     </div>
   );
 };

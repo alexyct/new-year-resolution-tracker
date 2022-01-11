@@ -42,8 +42,8 @@ const Dashboard = (props) => {
         <Resolution />
       </div>
       <LogResolutionButton clicked={logDataButtonClickedHandler} />
-      <div className={classes.barGraphWrapper}>
-        <Overview google={google} data={data} />
+      <div className={classes.barGraphWrapper} id="overview_wrap">
+        <Overview google={google} data={data} width={props.width} />
       </div>
       <WeekNav week={props.week} clicked={props.incrementWeek} />
       <Reflection memo={null} clicked={editMemoClickedHandler} />
