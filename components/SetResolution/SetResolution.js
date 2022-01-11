@@ -11,7 +11,7 @@ const SetResolution = (props) => {
 
   const [viewedPrompt, setViewedPrompt] = useState(false);
 
-  const { units, quantity, frequency } = props.userData;
+  const { units, quantity, frequency } = props.resolutionData;
 
   const setResolutionClickedHandler = () => {
     setViewedPrompt(true);
@@ -25,9 +25,27 @@ const SetResolution = (props) => {
           <h1>What's your new year's resolution?</h1>
           <p>Log your daily exercise and we will keep track of your progress</p>
           <div className={classes.buttonWrapper}>
-            <Button tertiary narrow clicked={setResolutionClickedHandler}>
-              Set resolution &#10132;
+            <Button
+              color="white"
+              secondary
+              narrow
+              clicked={setResolutionClickedHandler}
+            >
+              SET RESOLUTION &#10132;
             </Button>
+          </div>
+          <div className={classes.signInPrompt}>
+            <div className={classes.signInButton}>
+              or
+              <Button
+                color="white"
+                tertiary
+                narrow
+                clicked={props.buttonClickedHandler}
+              >
+                Sign in
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -64,7 +82,12 @@ const SetResolution = (props) => {
           </div>
         </div>
         <div className={classes.buttonWrapper}>
-          <Button tertiary narrow clicked={props.buttonClickedHandler}>
+          <Button
+            color="black"
+            tertiary
+            narrow
+            clicked={props.buttonClickedHandler}
+          >
             continue
           </Button>
         </div>
@@ -75,16 +98,16 @@ const SetResolution = (props) => {
   return <div className={classes.setResolution}>{page}</div>;
 };
 
-function getTextWidth(inputText) {
-  let font = "16px times new roman";
+// function getTextWidth(inputText) {
+//   let font = "16px times new roman";
 
-  let canvas = document.createElement("canvas");
-  let context = canvas.getContext("2d");
-  context.font = font;
-  let width = context.measureText(inputText).width;
-  let formattedWidth = Math.ceil(width);
+//   let canvas = document.createElement("canvas");
+//   let context = canvas.getContext("2d");
+//   context.font = font;
+//   let width = context.measureText(inputText).width;
+//   let formattedWidth = Math.ceil(width);
 
-  return formattedWidth;
-}
+//   return formattedWidth;
+// }
 
 export default SetResolution;
