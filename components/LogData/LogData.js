@@ -1,8 +1,10 @@
 import React from "react";
 import classes from "./LogData.module.css";
+import { useRouter } from "next/router";
 
 import LogEntry from "./LogEntry/LogEntry";
 import Button from "components/Button/Button";
+import Input from "components/Input/Input";
 
 function dateToString(date) {
   let day;
@@ -19,6 +21,7 @@ function dateToString(date) {
 }
 
 const LogData = (props) => {
+  const router = useRouter();
   const exerciseOptions = [
     "Walk",
     "Run",
@@ -35,7 +38,18 @@ const LogData = (props) => {
   let logData = (
     <div className={classes.logData}>
       <div className={classes.dateWrapper}>
-        <h1 className={classes.date}>{dateToString(props.date)}</h1>
+        {/* <h1 className={classes.date}>{dateToString(props.date)}</h1> */}
+        <div className={classes.inputWrapper}>
+          <div className={classes.inputMarginControl}>
+            <Input
+              custom
+              customDate
+              type="date"
+              value={props.date}
+              changed={props.dateChangedHandler}
+            />
+          </div>
+        </div>
       </div>
       <div className={classes.entries}>
         <LogEntry
@@ -56,12 +70,7 @@ const LogData = (props) => {
         />
       </div>
       <div className={classes.buttonWrapper}>
-        <Button
-          color="black"
-          tertiary
-          narrow
-          clicked={props.logButtonClickedHandler}
-        >
+        <Button color="black" secondary clicked={props.logButtonClickedHandler}>
           Log it
         </Button>
       </div>
@@ -70,7 +79,14 @@ const LogData = (props) => {
 
   return (
     <div>
-      <Button tertiary color="black" narrow>
+      <Button
+        tertiary
+        color="black"
+        narrow
+        clicked={() => {
+          router.push("/");
+        }}
+      >
         Back
       </Button>
       {logData}
