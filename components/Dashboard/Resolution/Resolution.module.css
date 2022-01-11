@@ -1,9 +1,12 @@
+.resolutionBackdrop {
+  width: 100%;
+  background-color: white;
+}
 .resolution {
   width: 100%;
   max-width: 30rem;
   padding: 2rem;
   margin: auto;
-  background: white;
 }
 
 .resolution > h1 {

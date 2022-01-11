@@ -7,11 +7,13 @@ const Resolution = (props) => {
   unit = "times";
   frequency = "week";
   return (
-    <div className = {classes.resolution}>
-      <h1>Your 2022 Resolution</h1>
-      <h3>
-        "I will exercise {quantity} {unit} every {frequency}"
-      </h3>
+    <div className={classes.resolutionBackdrop}>
+      <div className={classes.resolution}>
+        <h1>Your 2022 Resolution</h1>
+        <h3>
+          "I will exercise {quantity} {unit} every {frequency}"
+        </h3>
+      </div>
     </div>
   );
 };
