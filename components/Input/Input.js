@@ -22,6 +22,7 @@ const Input = (props) => {
   if (props.custom) {
     classArray.push(classes.custom);
   }
+  props.customDate && classArray.push(classes.customDate);
 
   return (
     <div className={classes.inputWrapper} type={props.type}>

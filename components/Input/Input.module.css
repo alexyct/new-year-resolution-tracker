@@ -92,11 +92,22 @@
   padding: 0 0.2em;
   text-align: inherit;
   box-sizing: border-box;
+  background-color: inherit;
 }
 
 .custom:focus {
   border: none;
   border-bottom: 0.15em solid var(--green);
+}
+
+.customDate {
+  text-align: right;
+  border-bottom: none;
+  color: black;
+}
+
+.customDate:focus {
+  border-bottom: none;
 }
 
 .customArrow {
@@ -130,3 +141,9 @@
 .customArrow[hide="true"]::after {
   display: none;
 }
+
+/* .customDate::-webkit-inner-spin-button,
+.customDate::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+} */
