@@ -40,3 +40,8 @@
 .negative {
   color: red;
 }
+
+.error {
+  text-align: center;
+  color: grey;
+}

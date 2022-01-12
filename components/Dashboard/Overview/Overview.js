@@ -1,16 +1,42 @@
-import React from 'react';
-import classes from './Overview.module.css';
+import React from "react";
+import classes from "./Overview.module.css";
 
-import BarGraph from './BarGraph';
+import BarGraph from "./BarGraph";
 
 const Overview = (props) => {
   //   process data
-  console.log(props.data);
+  const data = props.data;
+  if (data.length > 0) {
+    let exerciseDict = {};
+    // populate dict
+    for (let i = 0; i < data[0].length; i++) {
+      exerciseDict[data[0][i]] = 0;
+    }
+    for (let i = 1; i < data.length; i++) {
+      let item = data[i];
+      for (let j = 3; j < item.length; j++) {
+        exerciseDict[data[0][j]] += item[j];
+      }
+    }
+    console.log(exerciseDict);
+
+    // drop empty columns
+    // loop through all the columns backwards:
+    for (let i = data[0].length - 1; i >= 3; i--) {
+      let key = data[0][i];
+      if (exerciseDict[key] === 0) {
+        // drop column for every row
+        for (let j = 0; j < data.length; j++) {
+          data[j].splice(i, 1);
+        }
+      }
+    }
+  }
   let totalHours = 0;
   // TODO: get from props
-  let lastWeekHours = 1.2;
-  for (let i = 1; i < props.data.length; i++) {
-    let item = props.data[i];
+  let lastWeekHours = props.lastWeek || 0;
+  for (let i = 1; i < data.length; i++) {
+    let item = data[i];
     for (let j = 3; j < item.length; j++) {
       totalHours += item[j];
     }
@@ -35,14 +61,14 @@ const Overview = (props) => {
         <h2
           className={[
             classes.diffLabel,
-            diffSign == 1 ? classes.positive : classes.negative,
-          ].join(' ')}
+            diffSign == -1 ? classes.negative : classes.positive,
+          ].join(" ")}
         >
-          {diffSign == 1 ? <>&#11014;</> : <>&#11015;</>}
+          {diffSign == -1 ? <>&#11015;</> : <>&#11014;</>}
           {hoursDiff}h {minutesDiff}m from last week
         </h2>
       </div>
-      <BarGraph google={props.google} data={props.data} width={props.width} />
+      <BarGraph google={props.google} data={data} width={props.width} />
     </div>
   );
 };
