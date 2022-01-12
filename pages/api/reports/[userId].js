@@ -43,9 +43,9 @@ export default async function handler(req, res) {
 
       const table = turnDataToTableFormat(logs, resolution);
       const insights = generateInsights(logs);
-      const memo = report[0].memo;
+      // const memo = report[0].memo;
 
-      return res.status(200).json({ table, insights, memo });
+      return res.status(200).json({ table, insights, report });
     }
     case 'POST': {
       const report = await db.collection('reports').insertOne({
