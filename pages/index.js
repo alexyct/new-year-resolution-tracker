@@ -11,12 +11,22 @@ export function getCurrWeek() {
   );
 }
 
+export function weekToDate(week) {
+  // week 1:
+  let out = new Date(2022, 0, 3);
+  if (week > 1) {
+    out.setDate(out.getDate() + (week - 1) * 7);
+  }
+  var dd = String(out.getDate()).padStart(2, "0");
+  var mm = String(out.getMonth() + 1).padStart(2, "0");
+  var yyyy = out.getFullYear();
+  out = yyyy + "-" + mm + "-" + dd;
+  return out;
+}
+
 const Index = () => {
   const { data: session, status } = useSession();
 
-  const [unit, setUnit] = useState("hours");
-  const [frequency, setFrequency] = useState(2);
-  const [frequencyType, setFrequencyType] = useState("week");
   const [week, setWeek] = useState(getCurrWeek());
   const [windowWidth, setWindowWidth] = useState(0);
 
@@ -60,19 +70,6 @@ const Index = () => {
     if (week + increment > 0) {
       setWeek(week + increment);
     }
-  };
-
-  const weekToDate = (week) => {
-    // week 1:
-    let out = new Date(2022, 0, 3);
-    if (week > 1) {
-      out.setDate(out.getDate() + (week - 1) * 7);
-    }
-    var dd = String(out.getDate()).padStart(2, "0");
-    var mm = String(out.getMonth() + 1).padStart(2, "0");
-    var yyyy = out.getFullYear();
-    out = yyyy + "-" + mm + "-" + dd;
-    return out;
   };
 
   const resizeHandler = () => {
