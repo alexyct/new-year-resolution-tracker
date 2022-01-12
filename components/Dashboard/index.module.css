@@ -5,8 +5,16 @@
   background-color: #f6f6f6;
 }
 
+.overviewWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  margin: auto;
+}
+
 .barGraphWrapper {
-  height: 30rem;
+  flex: 1 1 80%;
+  height: 100%;
   width: 90%;
   max-width: 40rem;
   margin: 2rem auto;
@@ -15,6 +23,17 @@
   border-radius: 2rem;
 }
 
+.insightsWrapper {
+  flex: 1 1 60%;
+  height: 100%;
+}
+
 .signoutButtonWrapper {
   text-align: right;
+}
+
+@media (min-width: 600px) {
+  .overviewWrapper {
+    flex-direction: row;
+  }
 }

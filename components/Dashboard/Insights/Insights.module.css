@@ -1,0 +1,21 @@
+.insights {
+  height: 100%;
+  width: 90%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 2rem;
+}
+
+.insights > h1 {
+  font-size: 1.5rem;
+}
+
+.insights > ul {
+  padding-left: 1rem;
+}
+
+.insights > ul > li {
+  margin: 1rem auto;
+}

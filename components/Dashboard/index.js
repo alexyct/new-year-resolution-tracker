@@ -6,6 +6,7 @@ import classes from "./index.module.css";
 import Resolution from "./Resolution/Resolution";
 import LogResolutionButton from "./LogResolutionButton/LogResolutionButton";
 import Overview from "./Overview/Overview";
+import Insights from "./Insights/Insights";
 import WeekNav from "./WeekNav/WeekNav";
 import Reflection from "./Overview/Reflection/Reflection";
 import Button from "components/Button/Button";
@@ -42,12 +43,18 @@ const Dashboard = (props) => {
         <Resolution resolutionData={props.resolutionData} />
       </div>
       <LogResolutionButton clicked={logDataButtonClickedHandler} />
-      <div className={classes.barGraphWrapper} id="overview_wrap">
-        <Overview
-          google={google}
-          data={props.dashboardData}
-          width={props.width}
-        />
+
+      <div className={classes.overviewWrapper}>
+        <div className={classes.barGraphWrapper} id="overview_wrap">
+          <Overview
+            google={google}
+            data={props.dashboardData}
+            width={props.width}
+          />
+        </div>
+        <div className={classes.insightsWrapper}>
+          <Insights insights={props.insightsData} />
+        </div>
       </div>
       <WeekNav week={props.week} clicked={props.incrementWeek} />
       <Reflection memoData={props.memoData} clicked={editMemoClickedHandler} />
