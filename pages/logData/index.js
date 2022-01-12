@@ -63,7 +63,7 @@ const Index = () => {
       setErrorMessage("please enter valid time range");
       return;
     }
-    
+
     // hour = 60 * 60 * 1000
     let start = date;
     start.setHours(
@@ -91,14 +91,14 @@ const Index = () => {
     const data = { type: exercise, startDateTime: start, endDateTime: end };
     console.log("sending this to /api/logs:");
     console.log(data);
-    // axios
-    //   .post(`/api/logs/${session.user.id}`, data)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    axios
+      .post(`/api/logs/${session.user.id}`, data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
