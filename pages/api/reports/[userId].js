@@ -45,12 +45,13 @@ export default async function handler(req, res) {
       const insights = generateInsights(logs);
       // const memo = report[0].memo;
 
-      return res.status(200).json({ table, insights, report });
+      return res.status(200).json({ table, insights, report, resolution });
     }
     case 'POST': {
       const report = await db.collection('reports').insertOne({
         userId: ObjectId(userId),
         week: week,
+        // memo: req.body.memo,
         // resolutionId: ObjectId(req.body.resolutionId),
       });
       return res.status(200).json(report);

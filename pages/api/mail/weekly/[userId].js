@@ -2,6 +2,7 @@ import ReactDOMServer from 'react-dom/server';
 import nodemailer from 'nodemailer';
 import { ObjectId } from 'mongodb';
 import clientPromise from '@/lib/mongodb';
+import { setToMonday } from '@/lib/utils';
 
 function WeeklyMail({ name, summary, insights }) {
   return (
@@ -64,10 +65,9 @@ export default async function handler(req, res) {
 
   // Save report to database
   const report = await db.collection('reports').insertOne({
-    summary: summary,
-    insights: insights,
     userId: ObjectId(userId),
-    dateCreated: new Date(),
+    week: setToMonday(new Date()),
+    // dateCreated: new Date(),
   });
 
   // Define email containing report
