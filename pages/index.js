@@ -40,7 +40,7 @@ const Index = () => {
   });
 
   const [dashboardData, setDashboardData] = useState([]);
-  const [memoData, setMemoData] = useState({});
+  const [memoData, setMemoData] = useState([]);
 
   const resolutionChangedHandler = (e, key) => {
     if (key === "units") {
