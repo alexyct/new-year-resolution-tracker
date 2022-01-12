@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Insights.module.css";
 
 const Insights = (props) => {
-  console.log(props);
   let insights = null;
 
   insights = props.insights.map((item, i) => {
