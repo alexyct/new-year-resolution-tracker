@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "@/store/axios";
 import { useSession } from "next-auth/react";
 import classes from "./index.module.css";
+import { useRouter } from "next/router";
 
 import LogData from "@/components/LogData/LogData";
 
@@ -15,6 +16,7 @@ const convertDayFormat = (date) => {
 };
 
 const Index = () => {
+  const router = useRouter();
   const { data: session } = useSession();
   // TODO: get date from history
   // let date = new Date();
@@ -59,7 +61,7 @@ const Index = () => {
       (parseInt(startTime.split(":")[0]) +
         parseInt(startTime.split(":")[1]) / 60);
 
-    if (diff < 0) {
+    if (diff <= 0) {
       setErrorMessage("please enter valid time range");
       return;
     }
@@ -95,6 +97,7 @@ const Index = () => {
       .post(`/api/logs/${session.user.id}`, data)
       .then((response) => {
         console.log(response);
+        router.push("/logConfirmation");
       })
       .catch((error) => {
         console.log(error);

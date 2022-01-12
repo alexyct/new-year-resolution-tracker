@@ -2,8 +2,10 @@ import React from "react";
 import classes from "./LogConfirmation.module.css";
 
 import Button from "@/components/Button/Button";
+import { useRouter } from "next/router";
 
 const LogConfirmation = () => {
+  const router = useRouter();
   return (
     <div className={classes.logConfirmation}>
       <div className={classes.titleWrapper}>
@@ -12,8 +14,28 @@ const LogConfirmation = () => {
       </div>
 
       <div className={classes.buttonWrapper}>
-        <Button tertiary narrow>
+        <Button
+          tertiary
+          narrow
+          color="white"
+          clicked={() => {
+            router.push("/");
+          }}
+        >
           back
+        </Button>
+      </div>
+      <p>------or------</p>
+      <div className={classes.buttonWrapper}>
+        <Button
+          tertiary
+          narrow
+          color="white"
+          clicked={() => {
+            router.push("/logData");
+          }}
+        >
+          log another exercise
         </Button>
       </div>
     </div>
