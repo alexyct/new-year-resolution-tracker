@@ -1,0 +1,13 @@
+.navButtons {
+  display: flex;
+  width: 80%;
+  max-width: 40rem;
+  padding: 1rem;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.buttonWrapper {
+  width: 8rem;
+  /* background: blue; */
+}

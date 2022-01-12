@@ -1,0 +1,42 @@
+.overviewTitle {
+  font-size: 1rem;
+  display: inline-block;
+  margin: 0.2rem;
+  font-weight: normal;
+}
+
+.totalHours {
+  font-size: 1.5rem;
+  display: inline-block;
+  margin: 0;
+}
+
+.hourCount {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hourCount > h2 {
+  align-self: flex-end;
+}
+
+.diffLabel {
+  font-size: 0.8rem;
+  display: inline-block;
+  margin: 0.1em 0;
+}
+
+.chart {
+  width: 100%;
+  height: 20rem;
+}
+
+.positive {
+  color: var(--green);
+}
+
+.negative {
+  color: red;
+}

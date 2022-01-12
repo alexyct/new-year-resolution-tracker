@@ -1,0 +1,20 @@
+.dashboard {
+  height: 100%;
+  width: 100vw;
+  /* background-color: #fbfbf6; */
+  background-color: #f6f6f6;
+}
+
+.barGraphWrapper {
+  height: 30rem;
+  width: 90%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 2rem;
+}
+
+.signoutButtonWrapper {
+  text-align: right;
+}

@@ -1,0 +1,28 @@
+.reflection {
+  height: 22rem;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 2rem;
+  max-width: 40rem;
+}
+
+.reflection > h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem auto 1.5rem auto;
+}
+
+.memo {
+  height: 10rem;
+  overflow-y: scroll;
+}
+
+.buttonWrapper {
+  width: 10rem;
+  margin: auto;
+  color: black;
+  text-align: center;
+  /* background: pink; */
+}

@@ -1,14 +1,16 @@
-import clientPromise from '@/lib/mongodb';
-import { ObjectId } from 'mongodb';
+import clientPromise from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   const client = await clientPromise;
+
   const db = client.db('tracker');
   const { userId } = req.query;
   const week = new Date(req.query.week + 'T00:00:00.000Z');
 
   // /api/reports/[userId]?week=YYYY-MM-DD.
   switch (req.method) {
+
     case 'GET': {
       const report = await db
         .collection('reports')
@@ -42,9 +44,9 @@ export default async function handler(req, res) {
       });
       return res.status(200).json(report);
     }
-    case 'PATCH': {
+    case "PATCH": {
       const report = await db
-        .collection('reports')
+        .collection("reports")
         .findOneAndUpdate(
           { userId: ObjectId(userId), week: week },
           { $set: { memo: req.body.memo } }

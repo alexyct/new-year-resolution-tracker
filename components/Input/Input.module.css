@@ -89,12 +89,61 @@
   border-radius: 0;
   color: var(--green);
   font-weight: bold;
-  padding: 0;
-  text-align: center;
+  padding: 0 0.2em;
+  text-align: inherit;
   box-sizing: border-box;
+  background-color: inherit;
 }
 
 .custom:focus {
   border: none;
   border-bottom: 0.15em solid var(--green);
 }
+
+.customDate {
+  text-align: right;
+  border-bottom: none;
+  color: black;
+}
+
+.customDate:focus {
+  border-bottom: none;
+}
+
+.customArrow {
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.1em;
+  display: block;
+  background: white;
+  height: 80%;
+  width: 1.5em;
+  pointer-events: none;
+  /* border-radius: 15em; */
+  /* border: 1px solid lightgrey; */
+}
+
+.customArrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: solid grey;
+  border-width: 0 0.15em 0.15em 0;
+  display: inline-block;
+  padding: 0.12em;
+  transform: rotate(45deg) translate(-50%, -50%);
+  -webkit-transform: rotate(45deg) translate(-50%, -50%);
+}
+
+.customArrow[hide="true"]::after {
+  display: none;
+}
+
+/* .customDate::-webkit-inner-spin-button,
+.customDate::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+} */

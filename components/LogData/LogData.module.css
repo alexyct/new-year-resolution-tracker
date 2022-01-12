@@ -1,5 +1,6 @@
 .logData {
-  margin-top: 10rem;
+  margin: 10rem auto 0 auto;
+  max-width: 40rem;
 }
 
 .dateWrapper {
@@ -21,6 +22,16 @@
   font-size: 0.9rem;
   width: 10rem;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 3rem;
   text-align: center;
+}
+
+.inputWrapper {
+  font-size: 2rem;
+  width: 18rem;
+  margin: auto;
+}
+
+.inputMarginControl {
+  margin-left: 1rem;
 }

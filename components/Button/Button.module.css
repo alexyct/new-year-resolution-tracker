@@ -53,8 +53,8 @@
 }
 
 .secondary {
-  border: 3px solid;
-  background-color: #fff !important;
+  border: 1.2px solid;
+  background-color: transparent !important;
   color: var(--blue);
 }
 
@@ -118,6 +118,28 @@
 .black:focus {
   color: var(--black-shade);
   background-color: var(--black-shade);
+}
+
+.green {
+  color: var(--green);
+  background-color: var(--green);
+}
+
+.green:hover,
+.green:focus {
+  color: var(--green-shade);
+  background-color: var(--green-shade);
+}
+
+.white {
+  color: white;
+  background-color: white;
+}
+
+.white:hover,
+.white:focus {
+  color: white;
+  background-color: #ffeffe;
 }
 
 /* SHAPE */

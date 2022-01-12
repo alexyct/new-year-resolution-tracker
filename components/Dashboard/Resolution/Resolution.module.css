@@ -1,0 +1,22 @@
+.resolutionBackdrop {
+  width: 100%;
+  background-color: white;
+}
+.resolution {
+  width: 100%;
+  max-width: 30rem;
+  padding: 2rem;
+  margin: auto;
+}
+
+.resolution > h1 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.resolution > h3 {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+}

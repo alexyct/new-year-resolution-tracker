@@ -22,6 +22,7 @@ const Input = (props) => {
   if (props.custom) {
     classArray.push(classes.custom);
   }
+  props.customDate && classArray.push(classes.customDate);
 
   return (
     <div className={classes.inputWrapper} type={props.type}>
@@ -33,11 +34,14 @@ const Input = (props) => {
         onChange={props.changed}
         onClick={props.clicked}
         type={props.type}
+        defaultValue={props.defaultValue}
         value={props.value}
+        step={props.step}
         name={props.inputName}
         placeholder={props.placeholder}
         disabled={props.disabled}
       />
+      {props.type === "time" && <span className={classes.customArrow} />}
       {warning}
     </div>
   );
