@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import axios from "@/store/axios";
 
-import SetResolution from "@/components/SetResolution/SetResolution";
+import SetResolutionPrompt from "@/components/SetResolutionPrompt/SetResolutionPrompt";
 import Dashboard from "@/components/Dashboard/";
 
 export function getCurrWeek() {
@@ -35,7 +35,7 @@ const Index = () => {
   const [resolutionData, setResolutionData] = useState({
     type: "exercise",
     units: "hours",
-    quantity: 2,
+    quantity: 4,
     frequency: "week",
   });
 
@@ -89,6 +89,8 @@ const Index = () => {
     };
   }, [windowWidth]);
 
+  console.log(resolutionData);
+
   useEffect(() => {
     if (session && status !== "loading") {
       // post resolution
@@ -118,35 +120,25 @@ const Index = () => {
         .catch((error) => {
           console.log(error);
         });
+      console.log(resolutionData);
 
       axios
-        .post(`/api/resolutions/${session.user.id}`, resolutionData)
+        .get(`/api/reports/${session.user.id}?week=${weekToDate(week)}`)
+        // .get(`/api/logs/${session.user.id}?week=${weekToDate(week)}`)
         .then((response) => {
-          // is this resolution?
-          // setResolutionData(response.data)
-          // get dashboard info
-          console.log(
-            `/api/reports/${session.user.id}?week=${weekToDate(week)}`
-          );
-          axios
-            .get(`/api/reports/${session.user.id}?week=${weekToDate(week)}`)
-            // .get(`/api/logs/${session.user.id}?week=${weekToDate(week)}`)
-            .then((response) => {
-              // should get: graph data,
-              setDashboardData(response.data.table);
-              // memo data
-              setMemoData(response.data.report);
 
-              setInsightsData(response.data.insights);
-              console.log(response);
-              setIsLoading(false);
-            })
-            .catch((error) => {
-              setDashboardData([]);
-              console.log(error);
-            });
+          // setResolutionData()
+          // should get: graph data,
+          setDashboardData(response.data.table);
+          // memo data
+          setMemoData(response.data.report[0]);
+
+          setInsightsData(response.data.insights);
+          console.log(response);
+          setIsLoading(false);
         })
         .catch((error) => {
+          setDashboardData([]);
           console.log(error);
         });
     } else {
@@ -171,9 +163,8 @@ const Index = () => {
   } else {
     console.log("not logged in");
     renderedPage = (
-      <SetResolution
+      <SetResolutionPrompt
         resolutionData={resolutionData}
-        resolutionChangedHandler={resolutionChangedHandler}
         buttonClickedHandler={signInClickedHandler}
       />
     );

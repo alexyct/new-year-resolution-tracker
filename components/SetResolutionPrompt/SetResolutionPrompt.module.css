@@ -1,0 +1,87 @@
+.promptBackdrop {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  background-color: var(--green);
+}
+
+.prompt {
+  text-align: center;
+  width: 90%;
+  max-width: 70rem;
+  margin: auto;
+  margin-top: 20rem;
+}
+
+.prompt > h1 {
+  font-size: 1.2rem;
+}
+
+.prompt > p {
+  font-size: 0.8rem;
+  color: white;
+}
+
+.signInPrompt {
+  margin-top: 3rem;
+}
+
+.signInButton {
+  width: 10rem;
+  padding-top: 3rem;
+  margin: auto;
+  border-top: 1px solid white;
+}
+
+.resolution {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+  width: 30rem;
+  max-width: 90%;
+  margin: auto;
+  margin-top: 20rem;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+
+.resolutionText {
+  display: inline-block;
+  margin: 0;
+  font-size: inherit;
+}
+
+.inputWrapper {
+  display: inline-block;
+  font-size: inherit;
+  margin: 0 0.25em;
+  width: 3em;
+}
+
+.selectWrapper {
+  display: inline-block;
+  text-align: center;
+  margin: 0 0.25em;
+  margin-top: 1em;
+  font-size: inherit;
+  font-weight: bold;
+  color: var(--green);
+}
+
+.buttonWrapper {
+  width: 15em;
+  font-size: inherit;
+  text-align: center;
+  margin: 5rem auto 0 auto;
+  font-weight: normal;
+  /* margin: 5rem auto; */
+}
+
+.frequencyWrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: center;
+}
