@@ -22,7 +22,6 @@ export default async function handler(req, res) {
         })
         .limit(1)
         .sort({ $natural: -1 })
-        .project({ memo: 1 })
         .toArray();
 
       const resolution = await db.collection('resolutions').findOne({
