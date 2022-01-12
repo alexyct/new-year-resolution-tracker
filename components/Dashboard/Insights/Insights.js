@@ -5,8 +5,8 @@ const Insights = (props) => {
   console.log(props);
   let insights = null;
 
-  insights = props.insights.map((item) => {
-    return <li>{item}</li>;
+  insights = props.insights.map((item, i) => {
+    return <li key={i}>{item}</li>;
   });
 
   return (
