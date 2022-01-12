@@ -18,7 +18,7 @@ const Overview = (props) => {
         exerciseDict[data[0][j]] += item[j];
       }
     }
-    console.log(exerciseDict);
+    // console.log(exerciseDict);
 
     // drop empty columns
     // loop through all the columns backwards:
