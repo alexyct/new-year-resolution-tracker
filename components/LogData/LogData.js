@@ -55,7 +55,7 @@ const LogData = (props) => {
         <LogEntry
           title={"Exercise type"}
           options={exerciseOptions}
-          changed={props.exerciseTypeChangedHandler}
+          changed={props.exerciseChangedHandler}
           value={props.logData.exercise}
         />
         <LogEntry

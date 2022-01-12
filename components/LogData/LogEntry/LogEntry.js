@@ -10,7 +10,11 @@ const LogEntry = (props) => {
       <p className={classes.entryTitle}>{props.title}</p>
       <div className={classes.selectWrapper}>
         {props.options ? (
-          <Select options={props.options} />
+          <Select
+            options={props.options}
+            changed={props.changed}
+            selected={props.value}
+          />
         ) : (
           <Input
             type="time"
