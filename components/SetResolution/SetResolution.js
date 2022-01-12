@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import classes from "./SetResolution.module.css";
+import React, { useState, useEffect } from 'react';
+import classes from './SetResolution.module.css';
 
-import Select from "@/components/Select/Select";
-import Input from "@/components/Input/Input";
-import Button from "@/components/Button/Button";
+import Select from '@/components/Select/Select';
+import Input from '@/components/Input/Input';
+import Button from '@/components/Button/Button';
 
 const SetResolution = (props) => {
-  const unitOptions = ["hours", "minutes"];
-  const frequencyOptions = ["day", "week", "month"];
+  const unitOptions = ['hours', 'minutes'];
+  const frequencyOptions = ['day', 'week', 'month'];
 
   const [viewedPrompt, setViewedPrompt] = useState(false);
 
@@ -22,7 +22,7 @@ const SetResolution = (props) => {
     page = (
       <div className={classes.promptBackdrop}>
         <div className={classes.prompt}>
-          <h1>What's your new year's resolution?</h1>
+          <h1>What&apos;s your new year resolution?</h1>
           <p>Log your daily exercise and we will keep track of your progress</p>
           <div className={classes.buttonWrapper}>
             <Button

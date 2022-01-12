@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         type: req.body.type,
         startDateTime: new Date(req.body.startDateTime),
         endDateTime: new Date(req.body.endDateTime),
-        resolutionId: ObjectId(req.body.resolutionId),
+        // resolutionId: ObjectId(req.body.resolutionId),
         userId: ObjectId(userId),
       });
       return res.status(200).json(log);

@@ -1,10 +1,11 @@
-import React from "react";
-import classes from "./LogData.module.css";
-import { useRouter } from "next/router";
+import React from 'react';
+import classes from './LogData.module.css';
+import { useRouter } from 'next/router';
 
-import LogEntry from "./LogEntry/LogEntry";
-import Button from "components/Button/Button";
-import Input from "components/Input/Input";
+import LogEntry from './LogEntry/LogEntry';
+import Button from '@/components/Button/Button';
+import Input from '@/components/Input/Input';
+import { exerciseOptions } from '@/lib/constants';
 
 function dateToString(date) {
   let day;
@@ -13,27 +14,15 @@ function dateToString(date) {
   } else {
     day = new Date(date);
   }
-  var dd = String(day.getDate()).padStart(2, "0");
-  var mm = String(day.getMonth() + 1).padStart(2, "0");
+  var dd = String(day.getDate()).padStart(2, '0');
+  var mm = String(day.getMonth() + 1).padStart(2, '0');
   var yyyy = day.getFullYear();
-  day = mm + "/" + dd + "/" + yyyy;
+  day = mm + '/' + dd + '/' + yyyy;
   return day;
 }
 
 const LogData = (props) => {
   const router = useRouter();
-  const exerciseOptions = [
-    "Walk",
-    "Run",
-    "Cycling",
-    "Rower",
-    "HIIT",
-    "Hiking",
-    "Yoga",
-    "Dance",
-    "Strength Training",
-    "Swimming",
-  ];
 
   let logData = (
     <div className={classes.logData}>
@@ -53,18 +42,18 @@ const LogData = (props) => {
       </div>
       <div className={classes.entries}>
         <LogEntry
-          title={"Exercise type"}
+          title={'Exercise type'}
           options={exerciseOptions}
           changed={props.exerciseChangedHandler}
           value={props.logData.exercise}
         />
         <LogEntry
-          title={"Start time"}
+          title={'Start time'}
           changed={props.startTimeChangedHandler}
           value={props.logData.startTime}
         />
         <LogEntry
-          title={"End time"}
+          title={'End time'}
           changed={props.endTimeChangedHandler}
           value={props.logData.endTime}
         />
@@ -84,7 +73,7 @@ const LogData = (props) => {
         color="black"
         narrow
         clicked={() => {
-          router.push("/");
+          router.push('/');
         }}
       >
         Back

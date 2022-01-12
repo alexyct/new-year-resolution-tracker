@@ -1,5 +1,6 @@
-import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
+import clientPromise from '@/lib/mongodb';
+import { ObjectId } from 'mongodb';
+import { turnDataToTableFormat, generateInsights } from '@/lib/utils';
 
 export default async function handler(req, res) {
   const client = await clientPromise;
@@ -7,10 +8,11 @@ export default async function handler(req, res) {
   const db = client.db('tracker');
   const { userId } = req.query;
   const week = new Date(req.query.week + 'T00:00:00.000Z');
+  const endDate = new Date(req.query.week + 'T00:00:00.000Z');
+  new Date(endDate.setDate(endDate.getDate() + 7));
 
   // /api/reports/[userId]?week=YYYY-MM-DD.
   switch (req.method) {
-
     case 'GET': {
       const report = await db
         .collection('reports')
@@ -18,23 +20,32 @@ export default async function handler(req, res) {
           userId: ObjectId(userId),
           week: week,
         })
+        .project({ memo: 1 })
         .toArray();
+
+      const resolution = await db.collection('resolutions').findOne({
+        userId: ObjectId(userId),
+      });
 
       const logs = await db
         .collection('logs')
         .find({
           userId: ObjectId(userId),
           startDateTime: {
-            $gte: week,
+            $gt: week,
           },
           endDateTime: {
-            $lte: new Date(week.setDate(week.getDate() + 7)),
+            $lte: endDate,
           },
         })
-        .sort({ _id: -1 })
+        .sort({ startDateTime: -1 })
         .toArray();
 
-      return res.status(200).json({ logs, report });
+      const table = turnDataToTableFormat(logs, resolution);
+      const insights = generateInsights(logs);
+      const memo = report[0].memo;
+
+      return res.status(200).json({ table, insights, memo });
     }
     case 'POST': {
       const report = await db.collection('reports').insertOne({
@@ -44,9 +55,9 @@ export default async function handler(req, res) {
       });
       return res.status(200).json(report);
     }
-    case "PATCH": {
+    case 'PATCH': {
       const report = await db
-        .collection("reports")
+        .collection('reports')
         .findOneAndUpdate(
           { userId: ObjectId(userId), week: week },
           { $set: { memo: req.body.memo } }
