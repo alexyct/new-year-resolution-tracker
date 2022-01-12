@@ -17,7 +17,7 @@ const Index = () => {
 
   const saveMemoClickedHandler = () => {
     axios
-      .patch(`/api/reports/${session.user.id}?week=${weekToDate(week)}`, {
+      .post(`/api/reports/${session.user.id}?week=${weekToDate(week)}`, {
         memo: memo,
       })
       .then((response) => {

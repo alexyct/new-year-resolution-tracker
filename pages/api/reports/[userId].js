@@ -20,6 +20,8 @@ export default async function handler(req, res) {
           userId: ObjectId(userId),
           week: week,
         })
+        .limit(1)
+        .sort({ $natural: -1 })
         .project({ memo: 1 })
         .toArray();
 
@@ -51,7 +53,7 @@ export default async function handler(req, res) {
       const report = await db.collection('reports').insertOne({
         userId: ObjectId(userId),
         week: week,
-        // memo: req.body.memo,
+        memo: req.body.memo,
         // resolutionId: ObjectId(req.body.resolutionId),
       });
       return res.status(200).json(report);
