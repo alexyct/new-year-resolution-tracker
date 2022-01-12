@@ -24,13 +24,12 @@ const Dashboard = (props) => {
   //   ["S", 1.6, 2.43, 3, 3],
   // ];
 
-
   const logDataButtonClickedHandler = () => {
     router.push("/logData");
   };
 
   const editMemoClickedHandler = () => {
-    router.push("/addMemo");
+    router.push(`/addMemo/?week=${props.week}`);
   };
 
   useEffect(() => {
@@ -44,10 +43,14 @@ const Dashboard = (props) => {
       </div>
       <LogResolutionButton clicked={logDataButtonClickedHandler} />
       <div className={classes.barGraphWrapper} id="overview_wrap">
-        <Overview google={google} data={props.dashboardData} width={props.width} />
+        <Overview
+          google={google}
+          data={props.dashboardData}
+          width={props.width}
+        />
       </div>
       <WeekNav week={props.week} clicked={props.incrementWeek} />
-      <Reflection memo={null} clicked={editMemoClickedHandler} />
+      <Reflection memoData={props.memoData} clicked={editMemoClickedHandler} />
       <div className={classes.signoutButtonWrapper}>
         <Button
           color="black"
