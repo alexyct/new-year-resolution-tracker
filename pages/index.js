@@ -41,6 +41,7 @@ const Index = () => {
 
   const [dashboardData, setDashboardData] = useState([]);
   const [memoData, setMemoData] = useState([]);
+  const [insightsData, setInsightsData] = useState([]);
 
   const resolutionChangedHandler = (e, key) => {
     if (key === "units") {
@@ -110,6 +111,8 @@ const Index = () => {
               setDashboardData(response.data.table);
               // memo data
               setMemoData(response.data.report);
+
+              setInsightsData(response.data.insights);
               console.log(response);
               setIsLoading(false);
             })
@@ -130,6 +133,7 @@ const Index = () => {
   if (session && status !== "loading") {
     renderedPage = (
       <Dashboard
+        insightsData={insightsData}
         resolutionData={resolutionData}
         dashboardData={dashboardData}
         memoData={memoData}
