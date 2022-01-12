@@ -73,7 +73,9 @@ const Index = () => {
   };
 
   const resizeHandler = () => {
-    const temp = document.getElementById("overview_wrap").clientWidth;
+    const temp = document.getElementById("overview_wrap")
+      ? document.getElementById("overview_wrap").clientWidth
+      : 0;
     setTimeout(() => {
       setWindowWidth(temp);
     }, 200);
