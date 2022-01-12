@@ -1,12 +1,13 @@
-import React from 'react';
-import classes from './Reflection.module.css';
+import React from "react";
+import classes from "./Reflection.module.css";
 
-import Button from '@/components/Button/Button';
+import Button from "@/components/Button/Button";
 
 const Reflection = (props) => {
-  const memo = props.memo
-    ? props.memo
-    : 'Write some reflections for this week!';
+  const memo =
+    props.memoData.length !== 0
+      ? props.memoData.memo
+      : "Write some reflections for this week!";
   return (
     <div className={classes.reflection}>
       <h1>This week&apos;s memo</h1>
