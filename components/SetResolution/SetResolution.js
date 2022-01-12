@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import classes from './SetResolution.module.css';
+import React, { useState, useEffect } from "react";
+import classes from "./SetResolution.module.css";
 
-import Select from '@/components/Select/Select';
-import Input from '@/components/Input/Input';
-import Button from '@/components/Button/Button';
+import Select from "@/components/Select/Select";
+import Input from "@/components/Input/Input";
+import Button from "@/components/Button/Button";
 
 const SetResolution = (props) => {
-  const unitOptions = ['hours', 'minutes'];
-  const frequencyOptions = ['day', 'week', 'month'];
+  const unitOptions = ["hours", "minutes"];
+  const frequencyOptions = ["day", "week", "month"];
 
   const [viewedPrompt, setViewedPrompt] = useState(false);
 
@@ -60,14 +60,18 @@ const SetResolution = (props) => {
               custom
               type="number"
               value={quantity}
-              changed={props.frequencyChangedHandler}
+              changed={(e) => {
+                props.resolutionChangedHandler(e, "quantity");
+              }}
             />
           </div>
           <div className={classes.selectWrapper}>
             <Select
               selected={units}
               options={unitOptions}
-              changed={props.unitChangedHandler}
+              changed={(e) => {
+                props.resolutionChangedHandler(e, "units");
+              }}
             />
           </div>
           <div className={classes.frequencyWrapper}>
@@ -75,7 +79,9 @@ const SetResolution = (props) => {
             <div className={classes.selectWrapper}>
               <Select
                 options={frequencyOptions}
-                changed={props.frequencyTypeChangedHandler}
+                changed={(e) => {
+                  props.resolutionChangedHandler(e, "frequency");
+                }}
                 selected={frequency}
               />
             </div>

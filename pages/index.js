@@ -22,27 +22,30 @@ const Index = () => {
 
   const [isLoading, setIsLoading] = useState("false");
 
-  const resolutionData = {
+  const [resolutionData, setResolutionData] = useState({
     type: "exercise",
-    units: unit,
-    quantity: frequency,
-    frequency: frequencyType,
-  };
+    units: "hours",
+    quantity: 2,
+    frequency: "week",
+  });
 
-  const [dashboardData, setDashboardData] = useState({});
+  const [dashboardData, setDashboardData] = useState([]);
   const [memoData, setMemoData] = useState({});
 
-  const unitChangedHandler = (e) => {
-    // TODO: bound number
-    setUnit(e.target.value);
-  };
-
-  const frequencyChangedHandler = (e) => {
-    setFrequency(e.target.value);
-  };
-
-  const frequencyTypeChangedHandler = (e) => {
-    setFrequencyType(e.target.value);
+  const resolutionChangedHandler = (e, key) => {
+    if (key === "units") {
+      setResolutionData((prevState) => {
+        return { ...prevState, units: e.target.value };
+      });
+    } else if (key === "quantity") {
+      setResolutionData((prevState) => {
+        return { ...prevState, quantity: e.target.value };
+      });
+    } else if (key === "frequency") {
+      setResolutionData((prevState) => {
+        return { ...prevState, frequency: e.target.value };
+      });
+    }
   };
 
   const signInClickedHandler = () => {
@@ -96,20 +99,25 @@ const Index = () => {
       axios
         .post(`/api/resolutions/${session.user.id}`, resolutionData)
         .then((response) => {
-          console.log(response);
+          // is this resolution?
+          // setResolutionData(response.data)
           // get dashboard info
+          console.log(
+            `/api/reports/${session.user.id}?week=${weekToDate(week)}`
+          );
           axios
-            // .get(`/api/reports/${session.user.id}?type=latest`)
-            .get(`/api/logs/${session.user.id}?week=${weekToDate(week)}`)
+            .get(`/api/reports/${session.user.id}?week=${weekToDate(week)}`)
+            // .get(`/api/logs/${session.user.id}?week=${weekToDate(week)}`)
             .then((response) => {
               // should get: graph data,
-              setDashboardData(null);
+              setDashboardData(response.data.table);
               // memo data
-              setMemoData(null);
+              setMemoData(response.data.report);
               console.log(response);
               setIsLoading(false);
             })
             .catch((error) => {
+              setDashboardData([]);
               console.log(error);
             });
         })
@@ -125,6 +133,7 @@ const Index = () => {
   if (session && status !== "loading") {
     renderedPage = (
       <Dashboard
+        resolutionData={resolutionData}
         dashboardData={dashboardData}
         memoData={memoData}
         signOutClickedHandler={signOutClickedHandler}
@@ -138,9 +147,7 @@ const Index = () => {
     renderedPage = (
       <SetResolution
         resolutionData={resolutionData}
-        unitChangedHandler={unitChangedHandler}
-        frequencyChangedHandler={frequencyChangedHandler}
-        frequencyTypeChangedHandler={frequencyTypeChangedHandler}
+        resolutionChangedHandler={resolutionChangedHandler}
         buttonClickedHandler={signInClickedHandler}
       />
     );
