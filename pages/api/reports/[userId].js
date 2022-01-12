@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const { userId } = req.query;
   const week = new Date(req.query.week + 'T00:00:00.000Z');
 
-  // /api/reports/[userId]?week=${2021-01-03}.
+  // /api/reports/[userId]?week=YYYY-MM-DD.
   switch (req.method) {
     case 'GET': {
       const report = await db
