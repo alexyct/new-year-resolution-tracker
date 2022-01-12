@@ -5,7 +5,7 @@ import Button from "@/components/Button/Button";
 
 const Reflection = (props) => {
   const memo =
-    props.memoData.length !== 0
+    props.memoData && props.memoData.length !== 0
       ? props.memoData.memo
       : "Write some reflections for this week!";
   return (
