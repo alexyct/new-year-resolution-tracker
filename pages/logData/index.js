@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from '@/store/axios';
-import { useSession } from 'next-auth/react';
+import { useSession, getSession } from 'next-auth/react';
 import classes from './index.module.css';
 import { useRouter } from 'next/router';
 
@@ -121,3 +121,18 @@ const Index = () => {
 };
 
 export default Index;
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: { session } };
+}

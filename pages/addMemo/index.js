@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react';
+import { useSession, getSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
-import AddMemo from "components/AddMemo/AddMemo";
-import axios from "axios";
-import { weekToDate } from "pages";
+import AddMemo from 'components/AddMemo/AddMemo';
+import axios from 'axios';
+import { weekToDate } from 'pages';
 
 const Index = () => {
   const router = useRouter();
-  const [memo, setMemo] = useState("");
+  const [memo, setMemo] = useState('');
   const { data: session, status } = useSession();
 
   const memoChangedHandler = (e) => {
@@ -22,7 +22,7 @@ const Index = () => {
       })
       .then((response) => {
         console.log(response);
-        router.push("/");
+        router.push('/');
       })
       .catch((error) => {
         console.log(error);
@@ -32,7 +32,7 @@ const Index = () => {
   const week = router.query.week;
 
   useEffect(() => {
-    if (session && status !== "loading") {
+    if (session && status !== 'loading') {
       // post resolution
       // const data = { resolutionData };
       axios
@@ -44,7 +44,7 @@ const Index = () => {
           if (response.data.report.length > 0) {
             setMemo(response.data.report[0].memo);
           } else {
-            setMemo("");
+            setMemo('');
           }
 
           console.log(response);
@@ -53,7 +53,7 @@ const Index = () => {
           console.log(error);
         });
     } else {
-      console.log("no session");
+      console.log('no session');
     }
   }, [session, status]);
 
@@ -70,3 +70,18 @@ const Index = () => {
 };
 
 export default Index;
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return { props: { session } };
+}
