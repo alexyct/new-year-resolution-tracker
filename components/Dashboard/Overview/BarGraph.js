@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import classes from "./Overview.module.css";
+import React, { useEffect, useState } from 'react';
+import classes from './Overview.module.css';
 
 // import { ResponsiveBar } from "@nivo/bar";
 
@@ -15,52 +15,52 @@ const BarGraph = (props) => {
         data = google.visualization.arrayToDataTable(props.data);
         // Set chart options
         var options = {
-          title: "Weekly Report",
+          title: '',
           vAxis: {
-            title: "Hours",
+            title: 'Hours',
             minValue: 0,
-            gridlines: { color: "#e4e4e4", count: 4 },
-            textStyle: { color: "black" },
+            gridlines: { color: '#e4e4e4', count: 4 },
+            textStyle: { color: 'black' },
           },
-          bar: { groupWidth: "75%" },
+          bar: { groupWidth: '75%' },
           colors: [
-            "red",
-            "grey",
-            "#63CA6E",
-            "#3CB9EE",
-            "#B472E8",
-            "#E87272",
-            "#FF9052",
+            'red',
+            'grey',
+            '#63CA6E',
+            '#3CB9EE',
+            '#B472E8',
+            '#E87272',
+            '#FF9052',
           ],
-          seriesType: "bars",
+          seriesType: 'bars',
           series: {
             0: {
-              type: "line",
+              type: 'line',
               lineDashStyle: [4, 4],
             },
             1: {
-              type: "line",
+              type: 'line',
               lineDashStyle: [4, 4],
             },
           },
-          curveType: "function",
+          curveType: 'function',
           isStacked: true,
-          chartArea: { width: "90%", height: "80%" },
+          chartArea: { width: '90%', height: '80%' },
           animation: { startup: true },
-          legend: { position: "bottom" },
+          legend: { position: 'bottom' },
         };
 
         // Instantiate and draw our chart, passing in some options.
         const newChart = new google.visualization.ComboChart(
-          document.getElementById("chart_div")
+          document.getElementById('chart_div')
         );
         newChart.draw(data, options);
         // newChart.draw(data, google.charts.ComboChart.convertOptions(options));
 
         setChart(newChart);
       } catch {
-        console.log("caught error in rendering graph");
-        setErrorMessage("something went wrong");
+        console.log('caught error in rendering graph');
+        setErrorMessage('something went wrong');
         return;
       }
     }

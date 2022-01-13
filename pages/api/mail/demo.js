@@ -1,14 +1,12 @@
 import ReactDOMServer from 'react-dom/server';
 import nodemailer from 'nodemailer';
+import EmailGraph from 'store/emailGraph';
 
 function DemoMail() {
   return (
     <div>
       <p>Hi NAME! Here is a pretty visual to show your progress this week:</p>
-      {/* <img
-        src="https://image-charts.com/chart?cht=p3&chs=700x100&chd=t:60,40&chl=Hello|World&chan&chf=ps0-0,lg,45,ffeb3b,0.2,f44336,1|ps0-1,lg,45,8bc34a,0.2,009688,1"
-        alt="chart"
-      /> */}
+      <EmailGraph />
       <p>
         Total hours. Comparison with last week. Chart of exercise every day,
         with current average and target average plotted. Percentage break down

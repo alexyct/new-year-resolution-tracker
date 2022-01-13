@@ -4,6 +4,10 @@
 }
 
 .select {
+  appearance: none;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  background: transparent;
   margin: 0;
   font: inherit;
   color: inherit;
@@ -11,8 +15,8 @@
   border: none;
   border-bottom: 0.15em solid lightgrey;
   /* margin: 0.15em 0; */
-  width: 100%;
-  background-color: white;
+  width: 8rem;
+  background-color: #f6f6f6;
   text-align: inherit;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -43,7 +47,7 @@
   transform: translateY(-50%);
   right: 0.1em;
   display: block;
-  background: white;
+  background: #f6f6f6;
   height: 80%;
   width: 1.5em;
   pointer-events: none;
@@ -52,7 +56,7 @@
 }
 
 .customArrow::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 50%;
@@ -64,7 +68,7 @@
   -webkit-transform: rotate(45deg) translate(-50%, -50%);
 }
 
-.customArrow[hide="true"]::after {
+.customArrow[hide='true']::after {
   display: none;
 }
 

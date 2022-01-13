@@ -1,13 +1,38 @@
 .navButtons {
   display: flex;
-  width: 80%;
-  max-width: 20rem;
-  padding: 1rem;
-  margin: auto;
+  width: 100%;
+  /* max-width: 20rem; */
+  /* padding: 1rem; */
+  /* margin: auto; */
   justify-content: space-between;
+  align-items: center;
 }
 
-.buttonWrapper {
-  width: 8rem;
-  /* background: blue; */
+.navButtons > p {
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0 2.25rem;
+}
+
+.arrow {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.arrowInvisible {
+  visibility: hidden;
+}
+
+.arrowDisabled {
+  color: lightgray;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.arrowDisabled:hover {
+  cursor: default;
+}
+
+.arrow:hover {
+  cursor: pointer;
 }

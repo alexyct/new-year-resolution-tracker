@@ -145,11 +145,11 @@
 /* SHAPE */
 
 .round {
-  border-radius: 10em;
+  border-radius: 5em;
 }
 
 /* Width */
 
-.button[width="content"] {
+.button[width='content'] {
   width: auto;
 }

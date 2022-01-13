@@ -114,8 +114,75 @@ const BarGraph = (props) => {
   );
 };
 
+const test = {
+  type: 'bar',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [
+      {
+        type: 'line',
+        label: 'Average',
+        yAxisID: 'y2',
+        data: [1, 1, 1, 1, 1, 1, 1],
+        fill: false,
+      },
+      {
+        label: 'Running',
+        yAxisID: 'y1',
+        data: [0.5, 0.6, 2, 2, 0, 0, 1, 5],
+      },
+      {
+        label: 'Swimming',
+        yAxisID: 'y1',
+        data: [0, 2, 1, 1.2, 1.2, 2.4, 0],
+      },
+    ],
+  },
+  options: {
+    legend: {
+      display: true,
+      position: 'bottom',
+      align: 'middle',
+      padding: 20,
+    },
+    scales: {
+      xAxes: [
+        {
+          stacked: true,
+          display: false,
+        },
+      ],
+      yAxes: [
+        {
+          id: 'y1',
+          display: true,
+          position: 'left',
+          stacked: true,
+          ticks: {
+            min: 0,
+            max: 4,
+            stepSize: 1,
+          },
+        },
+        {
+          id: 'y2',
+          display: false,
+          position: 'right',
+          ticks: {
+            min: 0,
+            max: 4,
+            stepSize: 1,
+          },
+        },
+      ],
+    },
+  },
+};
+
 const EmailGraph = () => {
+  console.log(test);
   const google = useGoogleCharts();
+  const [url, setUrl] = useState('');
   const data = [
     ['Day', 'Target', 'Average', 'Basketball', 'Workout'],
     ['M', 1.6, 0, 3, 2],
@@ -128,8 +195,8 @@ const EmailGraph = () => {
   ];
   return (
     <div>
-      <BarGraph google={google} data={data} />
-      <p>Graph Placeholder</p>
+      <BarGraph google={google} data={data} setUrl={setUrl} />
+      <img src={`https://quickchart.io/chart?c=${JSON.stringify(test)}`}></img>
     </div>
   );
 };

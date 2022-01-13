@@ -1,5 +1,5 @@
-import React from "react";
-import classes from "./Insights.module.css";
+import React from 'react';
+import classes from './Insights.module.css';
 
 const Insights = (props) => {
   let insights = null;
@@ -10,7 +10,6 @@ const Insights = (props) => {
 
   return (
     <div className={classes.insights}>
-      <h1>Insights</h1>
       <ul>{insights}</ul>
     </div>
   );

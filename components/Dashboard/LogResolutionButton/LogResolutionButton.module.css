@@ -1,11 +1,15 @@
 .button {
+  /* width: 100%; */
+  /* padding: 2rem; */
+  /* background: var(--green); */
   cursor: pointer;
-  width: 100%;
-  padding: 2rem;
-  background: var(--green);
-  color: white;
+  color: var(--green);
   border: none;
   margin: 0;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.button:hover {
+  color: var(--green-shade);
 }

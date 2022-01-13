@@ -1,18 +1,19 @@
 .resolution {
-  width: 100%;
-  max-width: 30rem;
-  padding: 2rem;
+  /* width: 100%; */
+  /* max-width: 30rem; */
+  /* padding: 2rem; */
   margin: auto;
 }
 
 .resolution > h1 {
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 600;
   margin: 0;
+  padding-bottom: 0.6125rem;
 }
 
 .resolution > h3 {
-  font-size: 1rem;
-  font-weight: normal;
+  font-size: 1.125rem;
+  font-weight: 300;
   margin: 0;
 }

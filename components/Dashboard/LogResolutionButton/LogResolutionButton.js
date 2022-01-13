@@ -1,12 +1,12 @@
-import React from "react";
-import classes from "./LogResolutionButton.module.css";
+import React from 'react';
+import classes from './LogResolutionButton.module.css';
 
 const LogResolutionButton = (props) => {
   return (
     <div>
-      <button className={classes.button} onClick={props.clicked}>
-        I exercised!
-      </button>
+      <a className={classes.button} onClick={props.clicked}>
+        Add Data
+      </a>
     </div>
   );
 };

@@ -36,6 +36,10 @@
   font: inherit;
 }
 
+.textarea:focus {
+  outline-color: #63ca6e;
+}
+
 .buttonWrapper {
   font-weight: bold;
   text-align: right;

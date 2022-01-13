@@ -25,33 +25,59 @@ const Dashboard = (props) => {
 
   return (
     <div className={classes.dashboard}>
-      <div className={classes.resolutionWrapper}>
-        <Resolution resolutionData={props.resolutionData} />
+      <div className={classes.HeadWrapper}>
+        <div>
+          <Resolution resolutionData={props.resolutionData} />
+        </div>
+        <div className={classes.weekNavWrapper}>
+          <WeekNav week={props.week} clicked={props.incrementWeek} />
+        </div>
       </div>
-      <LogResolutionButton clicked={logDataButtonClickedHandler} />
+      <div className={classes.mainWrapper}>
+        <div>
+          <div className={classes.subHeadingWrapper}>
+            <h2 className={classes.subHeading}>Stats</h2>
+            <LogResolutionButton clicked={logDataButtonClickedHandler} />
+          </div>
+          <div className={classes.overviewWrapper} id="overview_wrap">
+            <Overview
+              google={google}
+              data={props.dashboardData}
+              width={props.width}
+            />
+          </div>
+        </div>
+        <div>
+          <h2 className={classes.subHeading}>Insights</h2>
+          <div className={classes.insightsWrapper}>
+            <Insights insights={props.insightsData} />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className={classes.subHeadingWrapper}>
+          <h2 className={classes.subHeading}>Your Memo</h2>
+          <a
+            className={classes.editMemoButton}
+            onClick={editMemoClickedHandler}
+          >
+            Edit Memo
+          </a>
+        </div>
+        <Reflection
+          memoData={props.memoData}
+          clicked={editMemoClickedHandler}
+        />
+      </div>
 
-      <div className={classes.overviewWrapper}>
-        <div className={classes.barGraphWrapper} id="overview_wrap">
-          <Overview
-            google={google}
-            data={props.dashboardData}
-            width={props.width}
-          />
-        </div>
-        <div className={classes.insightsWrapper}>
-          <Insights insights={props.insightsData} />
-        </div>
-      </div>
-      <WeekNav week={props.week} clicked={props.incrementWeek} />
-      <Reflection memoData={props.memoData} clicked={editMemoClickedHandler} />
       <div className={classes.signoutButtonWrapper}>
         <Button
-          color="black"
+          color="green"
           tertiary
           narrow
           clicked={props.signOutClickedHandler}
         >
-          sign out
+          Sign Out
         </Button>
       </div>
     </div>

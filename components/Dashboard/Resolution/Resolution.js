@@ -8,7 +8,7 @@ const Resolution = (props) => {
       <div className={classes.resolution}>
         <h1>Your 2022 Resolution</h1>
         <h3>
-          &quot;I will exercise {quantity} {units} every {frequency}&quot;
+          &quot;I will exercise for {quantity} {units} every {frequency}&quot;
         </h3>
       </div>
     </div>

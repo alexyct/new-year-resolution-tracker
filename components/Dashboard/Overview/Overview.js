@@ -1,7 +1,7 @@
-import React from "react";
-import classes from "./Overview.module.css";
+import React from 'react';
+import classes from './Overview.module.css';
 
-import BarGraph from "./BarGraph";
+import BarGraph from './BarGraph';
 
 const Overview = (props) => {
   //   process data
@@ -53,7 +53,7 @@ const Overview = (props) => {
 
   return (
     <div>
-      <h1 className={classes.overviewTitle}>This week&apos;s average</h1>
+      <h1 className={classes.overviewTitle}>Daily Average</h1>
       <div className={classes.hourCount}>
         <h1 className={classes.totalHours}>
           {hours}h {minutes}m
@@ -62,13 +62,15 @@ const Overview = (props) => {
           className={[
             classes.diffLabel,
             diffSign == -1 ? classes.negative : classes.positive,
-          ].join(" ")}
+          ].join(' ')}
         >
           {diffSign == -1 ? <>&#11015;</> : <>&#11014;</>}
           {hoursDiff}h {minutesDiff}m from last week
         </h2>
       </div>
-      <BarGraph google={props.google} data={data} width={props.width} />
+      <div className={classes.chartWrapper}>
+        <BarGraph google={props.google} data={data} width={props.width} />
+      </div>
     </div>
   );
 };

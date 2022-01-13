@@ -11,15 +11,17 @@
   width: 90%;
   max-width: 70rem;
   margin: auto;
-  margin-top: 20rem;
+  margin-top: 15rem;
 }
 
 .prompt > h1 {
-  font-size: 1.2rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .prompt > p {
-  font-size: 0.8rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   color: white;
 }
 

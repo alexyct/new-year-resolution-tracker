@@ -1,38 +1,96 @@
 .dashboard {
-  height: 100%;
-  width: 100vw;
-  background-color: #f6f6f6;
+  /* height: 100%; */
+  /* width: 100vw; */
+  padding: 40px 0;
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* background-color: #f6f6f6; */
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* max-width: 40rem; */
+  /* margin: auto; */
+}
+
+.subHeadingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weekNavWrapper {
+  background: white;
+  border-radius: 0.75rem;
+  margin-top: 2rem;
 }
 
 .overviewWrapper {
-  display: flex;
-  flex-direction: column;
-  max-width: 40rem;
-  margin: auto;
-}
-
-.barGraphWrapper {
   flex: 1 1 80%;
-  height: 100%;
-  width: 90%;
-  max-width: 40rem;
-  margin: 2rem auto;
+  /* height: 100%; */
+  /* width: 90%; */
+  /* max-width: 40rem; */
+  /* margin: 2rem 0; */
   padding: 1rem;
   background: white;
-  border-radius: 2rem;
+  border-radius: 0.75rem;
 }
 
 .insightsWrapper {
-  flex: 1 1 60%;
-  height: 100%;
+  flex: 1 1 30%;
+  /* height: 100%; */
 }
 
 .signoutButtonWrapper {
-  text-align: right;
+  /* background-color: var(--green); */
+  text-align: center;
+  border-raidus: 0.5rem;
 }
 
-@media (min-width: 600px) {
-  .overviewWrapper {
+.subHeading {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.editMemoButton {
+  cursor: pointer;
+  color: var(--green);
+  border: none;
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.editMemoButton:hover {
+  color: var(--green-shade);
+}
+
+@media (min-width: 720px) {
+  .dashboard {
+    padding: 100px 0;
+  }
+
+  .mainWrapper {
     flex-direction: row;
+    gap: 2rem;
+  }
+
+  .overviewWrapper {
+    padding: 2rem;
+  }
+  .HeadWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .weekNavWrapper {
+    margin-top: 0;
   }
 }
