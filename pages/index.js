@@ -50,6 +50,7 @@ const Index = () => {
     }, 200);
   };
 
+<<<<<<< HEAD
   // const weeklyButtonClickedHandler = async () => {
   //   axios
   //     .post("/api/mail/demo")
@@ -102,7 +103,6 @@ const Index = () => {
     } finally {
       return;
     }
-  };
 
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
