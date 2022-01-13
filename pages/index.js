@@ -111,6 +111,7 @@ const Index = () => {
     }
   }, [session, status, week]);
 
+  console.log(session, status)
   let renderedPage = null;
   if (session && status !== "loading") {
     renderedPage = (
