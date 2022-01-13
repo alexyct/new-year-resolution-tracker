@@ -114,7 +114,7 @@ const BarGraph = (props) => {
   );
 };
 
-const test = {
+const demoChartData = {
   type: 'bar',
   data: {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -124,16 +124,29 @@ const test = {
         label: 'Average',
         yAxisID: 'y2',
         data: [1, 1, 1, 1, 1, 1, 1],
+        borderColor: 'rgb(128,128,128)',
         fill: false,
+        pointRadius: 0,
+      },
+      {
+        type: 'line',
+        label: 'Target',
+        yAxisID: 'y2',
+        data: [1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2],
+        borderColor: 'rgb(255,0,0)',
+        fill: false,
+        pointRadius: 0,
       },
       {
         label: 'Running',
         yAxisID: 'y1',
+        backgroundColor: 'rgb(99, 202, 110)',
         data: [0.5, 0.6, 2, 2, 0, 0, 1, 5],
       },
       {
         label: 'Swimming',
         yAxisID: 'y1',
+        backgroundColor: 'rgb(60, 185, 238)',
         data: [0, 2, 1, 1.2, 1.2, 2.4, 0],
       },
     ],
@@ -180,7 +193,8 @@ const test = {
 };
 
 const EmailGraph = () => {
-  console.log(test);
+  console.log(demoChartData);
+  console.log(`https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}`);
   const google = useGoogleCharts();
   const [url, setUrl] = useState('');
   const data = [
@@ -195,8 +209,10 @@ const EmailGraph = () => {
   ];
   return (
     <div>
-      <BarGraph google={google} data={data} setUrl={setUrl} />
-      <img src={`https://quickchart.io/chart?c=${JSON.stringify(test)}`}></img>
+      {/* <BarGraph google={google} data={data} setUrl={setUrl} /> */}
+      <img
+        src={`https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}`}
+      />
     </div>
   );
 };

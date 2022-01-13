@@ -2,11 +2,120 @@ import ReactDOMServer from 'react-dom/server';
 import nodemailer from 'nodemailer';
 import EmailGraph from 'store/emailGraph';
 
+const demoChartData = {
+  type: 'bar',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [
+      {
+        type: 'line',
+        label: 'Average',
+        yAxisID: 'y2',
+        data: [1, 1, 1, 1, 1, 1, 1],
+        borderColor: 'rgb(128,128,128)',
+        fill: false,
+        pointRadius: 0,
+      },
+      {
+        type: 'line',
+        label: 'Target',
+        yAxisID: 'y2',
+        data: [1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2],
+        borderColor: 'rgb(255,0,0)',
+        fill: false,
+        pointRadius: 0,
+      },
+      {
+        label: 'Running',
+        yAxisID: 'y1',
+        backgroundColor: 'rgb(99, 202, 110)',
+        data: [0.5, 0.6, 2, 2, 0, 0, 1, 5],
+      },
+      {
+        label: 'Swimming',
+        yAxisID: 'y1',
+        backgroundColor: 'rgb(60, 185, 238)',
+        data: [0, 2, 1, 1.2, 1.2, 2.4, 0],
+      },
+    ],
+  },
+  options: {
+    legend: {
+      display: true,
+      position: 'bottom',
+      align: 'middle',
+      padding: 20,
+    },
+    scales: {
+      xAxes: [
+        {
+          stacked: true,
+          display: false,
+        },
+      ],
+      yAxes: [
+        {
+          id: 'y1',
+          display: true,
+          position: 'left',
+          stacked: true,
+          ticks: {
+            min: 0,
+            max: 4,
+            stepSize: 1,
+          },
+        },
+        {
+          id: 'y2',
+          display: false,
+          position: 'right',
+          ticks: {
+            min: 0,
+            max: 4,
+            stepSize: 1,
+          },
+        },
+      ],
+    },
+  },
+};
+
+const test = {
+  type: 'bar',
+  data: {
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    datasets: [
+      { label: 'Users', data: [50, 60, 70, 180] },
+      { label: 'Revenue', data: [100, 200, 300, 400] },
+    ],
+  },
+};
+
 function DemoMail() {
   return (
     <div>
       <p>Hi NAME! Here is a pretty visual to show your progress this week:</p>
       <EmailGraph />
+      <img
+        width="600"
+        height="800"
+        style={{ display: 'block' }}
+        src={`https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}`}
+        alt={`https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}`}
+        title="Demo Chart"
+      />
+      <div
+        style={{
+          height: '24px',
+          width: '24px',
+          display: 'block',
+          background: `url(
+            https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}
+          )`,
+          backgroundSize: 'contain',
+        }}
+      ></div>
+      {/* <img src={`https://quickchart.io/chart?c=${JSON.stringify(test)}`} /> */}
       <p>
         Total hours. Comparison with last week. Chart of exercise every day,
         with current average and target average plotted. Percentage break down
