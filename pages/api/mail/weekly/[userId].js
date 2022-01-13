@@ -1,28 +1,42 @@
-import ReactDOMServer from 'react-dom/server';
-import nodemailer from 'nodemailer';
-import { ObjectId } from 'mongodb';
-import clientPromise from '@/lib/mongodb';
+import ReactDOMServer from "react-dom/server";
+import nodemailer from "nodemailer";
+import { ObjectId } from "mongodb";
+import clientPromise from "@/lib/mongodb";
 import {
   setToMonday,
   getTarget,
   getAverage,
   generateInsights,
-} from '@/lib/utils';
+} from "@/lib/utils";
 
 function convertTime(num) {
-  let hours = Math.floor(num);
-  let minutes = Math.floor((num % 1) * 60);
-  return hours + 'h ' + minutes + 'min';
+  let hours = Math.abs(Math.floor(num));
+  let minutes = Math.abs(Math.floor((num % 1) * 60));
+  let out = "";
+  if (hours != 0) {
+    out += hours + "h ";
+  }
+  out += minutes + "min";
 }
 
-function WeeklyMail({ name, averaged, exceeded, improved, insights }) {
+function WeeklyMail({
+  name,
+  averaged,
+  exceeded,
+  improved,
+  insights,
+  improvedSign,
+}) {
   return (
     <div>
       <p>Hi {name} - You did great this week! You:</p>
       <ul>
         <li>Exercised for {averaged} this week.</li>
         <li>Exceed your goal by {exceeded}.</li>
-        <li>Did {improved} more exercise than last week.</li>
+        <li>
+          Did {improved} {improvedSign === 1 ? "more" : "less"} exercise than
+          last week.
+        </li>
       </ul>
       <p>Some insights to help you better acheive your goals:</p>
       <ul>
@@ -41,14 +55,14 @@ function WeeklyMail({ name, averaged, exceeded, improved, insights }) {
 }
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
+  if (req.method !== "POST") {
     return res.status(405).send({
-      error: 'Method Not Allowed',
+      error: "Method Not Allowed",
     });
   }
 
   const client = await clientPromise;
-  const db = client.db('tracker');
+  const db = client.db("tracker");
   const { userId } = req.query;
   const week = setToMonday(new Date());
   const endDate = setToMonday(new Date());
@@ -56,12 +70,12 @@ export default async function handler(req, res) {
   new Date(endDate.setDate(endDate.getDate() + 7));
   new Date(prevWeek.setDate(prevWeek.getDate() - 7));
 
-  const resolution = await db.collection('resolutions').findOne({
+  const resolution = await db.collection("resolutions").findOne({
     userId: ObjectId(userId),
   });
 
   const logs = await db
-    .collection('logs')
+    .collection("logs")
     .find({
       userId: ObjectId(userId),
       startDateTime: {
@@ -75,7 +89,7 @@ export default async function handler(req, res) {
     .toArray();
 
   const prevLogs = await db
-    .collection('logs')
+    .collection("logs")
     .find({
       userId: ObjectId(userId),
       startDateTime: {
@@ -92,15 +106,16 @@ export default async function handler(req, res) {
   const averaged = convertTime(average);
   const exceeded = convertTime(average - getTarget(resolution) / 7);
   const improved = convertTime(average - getAverage(prevLogs));
+  const improvedSign = Math.sign(average - getAverage(prevLogs));
 
   const insights = generateInsights(logs);
 
   // Define email containing report
   let mailOptions = {
-    from: 'newyearresolutiontracker@gmail.com',
+    from: "newyearresolutiontracker@gmail.com",
     to: req.body.emailTo,
-    subject: 'You weekly report is here!',
-    text: 'Here is a summary of your progress this week.',
+    subject: "You weekly report is here!",
+    text: "Here is a summary of your progress this week.",
     html: await ReactDOMServer.renderToString(
       <WeeklyMail
         name={req.body.name}
@@ -112,7 +127,7 @@ export default async function handler(req, res) {
     ),
   };
   let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
       user: process.env.EMAIL_FROM,
       pass: process.env.EMAIL_PASSWORD,
@@ -122,12 +137,12 @@ export default async function handler(req, res) {
   // Send email
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent: ' + info.response);
+    console.log("Email sent: " + info.response);
     return res.status(200).json({ sent: logs });
   } catch (error) {
     console.error(`Failed to send email: `, error);
     return res.status(400).send({
-      error: 'Could not send the email',
+      error: "Could not send the email",
     });
   }
 }
