@@ -5,6 +5,7 @@ import axios from "axios";
 import SetResolutionPrompt from "@/components/SetResolutionPrompt/SetResolutionPrompt";
 import Dashboard from "@/components/Dashboard/";
 import { getCurrWeek, weekToDate } from "@/lib/utils";
+import sendDemoEmail from "./test.js";
 
 const Index = () => {
   const { data: session, status } = useSession();
@@ -47,6 +48,42 @@ const Index = () => {
     setTimeout(() => {
       setWindowWidth(temp);
     }, 200);
+  };
+
+  const weeklyButtonClickedHandler = async () => {
+    try {
+      const res = await fetch(`/api/mail/demo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          emailTo: session.user.email,
+        }),
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      return;
+    }
+  };
+
+  const dailyButtonClickedHandler = async () => {
+    try {
+      const res = await fetch(`/api/mail/demo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          emailTo: session.user.email,
+        }),
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      return;
+    }
   };
 
   useEffect(() => {
@@ -95,6 +132,8 @@ const Index = () => {
         resolutionData={resolutionData}
         dashboardData={dashboardData}
         memoData={memoData}
+        weeklyButtonClickedHandler={weeklyButtonClickedHandler}
+        dailyButtonClickedHandler={dailyButtonClickedHandler}
         signOutClickedHandler={signOutClickedHandler}
         incrementWeek={incrementWeek}
         week={week}

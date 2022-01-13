@@ -1,40 +1,40 @@
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signIn, signOut } from "next-auth/react";
 
-import EmailGraph from '@/store/emailGraph';
+import EmailGraph from "@/store/emailGraph";
 
 const demoChartData = {
-  type: 'bar',
+  type: "bar",
   data: {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     datasets: [
       {
-        type: 'line',
-        label: 'Average',
-        yAxisID: 'y2',
+        type: "line",
+        label: "Average",
+        yAxisID: "y2",
         data: [1, 1, 1, 1, 1, 1, 1],
-        borderColor: 'rgb(128,128,128)',
+        borderColor: "rgb(128,128,128)",
         fill: false,
         pointRadius: 0,
       },
       {
-        type: 'line',
-        label: 'Target',
-        yAxisID: 'y2',
+        type: "line",
+        label: "Target",
+        yAxisID: "y2",
         data: [1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2],
-        borderColor: 'rgb(255,0,0)',
+        borderColor: "rgb(255,0,0)",
         fill: false,
         pointRadius: 0,
       },
       {
-        label: 'Running',
-        yAxisID: 'y1',
-        backgroundColor: 'rgb(99, 202, 110)',
+        label: "Running",
+        yAxisID: "y1",
+        backgroundColor: "rgb(99, 202, 110)",
         data: [0.5, 0.6, 2, 2, 0, 0, 1, 5],
       },
       {
-        label: 'Swimming',
-        yAxisID: 'y1',
-        backgroundColor: 'rgb(60, 185, 238)',
+        label: "Swimming",
+        yAxisID: "y1",
+        backgroundColor: "rgb(60, 185, 238)",
         data: [0, 2, 1, 1.2, 1.2, 2.4, 0],
       },
     ],
@@ -42,8 +42,8 @@ const demoChartData = {
   options: {
     legend: {
       display: true,
-      position: 'bottom',
-      align: 'middle',
+      position: "bottom",
+      align: "middle",
       padding: 20,
     },
     scales: {
@@ -55,9 +55,9 @@ const demoChartData = {
       ],
       yAxes: [
         {
-          id: 'y1',
+          id: "y1",
           display: true,
-          position: 'left',
+          position: "left",
           stacked: true,
           ticks: {
             min: 0,
@@ -66,9 +66,9 @@ const demoChartData = {
           },
         },
         {
-          id: 'y2',
+          id: "y2",
           display: false,
-          position: 'right',
+          position: "right",
           ticks: {
             min: 0,
             max: 4,
@@ -127,9 +127,9 @@ export default function TestPage() {
   const sendWeeklyEmail = async () => {
     try {
       const res = await fetch(`/api/mail/weekly/${session.user.id}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: session.user.name,
@@ -146,9 +146,9 @@ export default function TestPage() {
   const sendDemoEmail = async () => {
     try {
       const res = await fetch(`/api/mail/demo`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           emailTo: session.user.email,
@@ -164,9 +164,9 @@ export default function TestPage() {
   const sendDailyEmail = async () => {
     try {
       const res = await fetch(`/api/mail/daily`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           emailTo: session.user.email,
@@ -218,7 +218,7 @@ export default function TestPage() {
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn('google')}>Sign in</button>
+      <button onClick={() => signIn("google")}>Sign in</button>
     </>
   );
 }

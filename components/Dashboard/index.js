@@ -11,6 +11,7 @@ import WeekNav from "./WeekNav/WeekNav";
 import Reflection from "./Overview/Reflection/Reflection";
 import Button from "components/Button/Button";
 
+
 const Dashboard = (props) => {
   const router = useRouter();
   const google = useGoogleCharts();
@@ -71,13 +72,40 @@ const Dashboard = (props) => {
         />
       </div>
 
-      <div className={classes.signoutButtonWrapper}>
+      <div className={classes.note}>
+        <h2 className={classes.subHeading}>Note for Hackathon Judges</h2>
+        <div className={classes.noteWrapper}>
+          <p>
+            For judges of the hackathon: we know you probably don't have a week
+            to wait for our weekly automations to send, so click this button to
+            see a demo of our weekly automated email. It takes in all the logs
+            you have made and show you a summary of your progress this week,
+            generate insights to help you better acheive your resolution, and
+            prompt you to write a memo to reflect on your progress and keep up
+            the good work.
+          </p>
+        </div>
+      </div>
+
+      <div className={classes.emailButtons}>
         <Button
           color="green"
-          tertiary
-          narrow
-          clicked={props.signOutClickedHandler}
+          size="large"
+          clicked={props.weeklyButtonClickedHandler}
         >
+          Send Demo Weekly Report Email
+        </Button>
+        <Button
+          color="green"
+          size="large"
+          clicked={props.dailyButtonClickedHandler}
+        >
+          Send Daily Reminder Email Now
+        </Button>
+      </div>
+
+      <div className={classes.signoutButtonWrapper}>
+        <Button color="red" primary clicked={props.signOutClickedHandler}>
           Sign Out
         </Button>
       </div>
