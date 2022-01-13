@@ -50,7 +50,7 @@ Weekly Report Email
 ![Weekly Report Email](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n0m7p087a4tix2zlbjt3.png)
 
 On Mobile
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oseej9f8ds68itltsecq.png)
+![Mobile View](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jo66n93vgk1exa71pof1.png)
 
 For judges of the Hackathon, we recognise that you may not have time to actually try to app and wait a week for the automated reports. So if you sign in to the app, you will see buttons that sends you a demo of the weekly automated report (as well as demo of the daily reminders).
 
