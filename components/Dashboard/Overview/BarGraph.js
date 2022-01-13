@@ -45,7 +45,7 @@ const BarGraph = (props) => {
   useEffect(() => {
     setErrorMessage(null);
     if (props.data && props.data.length === 0) {
-      setErrorMessage("loading");
+      setErrorMessage("Add some logs");
       return;
     }
     if (props.data && props.google) {

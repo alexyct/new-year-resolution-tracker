@@ -76,6 +76,7 @@ const Index = () => {
       // post resolution
       // const data = { resolutionData };
       setIsLoading(true);
+      console.log("is logged in");
       // email APIs
 
       // axios
@@ -113,8 +114,9 @@ const Index = () => {
           setMemoData(response.data.report[0]);
 
           setInsightsData(response.data.insights);
-          console.log(response);
           setIsLoading(false);
+
+          console.log(response);
         })
         .catch((error) => {
           setDashboardData([]);
