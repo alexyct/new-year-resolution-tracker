@@ -52,7 +52,7 @@ const Index = () => {
 
   const weeklyButtonClickedHandler = async () => {
     axios
-      .post("/api/mail/demo")
+      .post("/api/mail/demo", { emailTo: session.user.email })
       .then((res) => {
         console.log(res);
       })
@@ -61,7 +61,7 @@ const Index = () => {
 
   const dailyButtonClickedHandler = async () => {
     axios
-      .post("/api/mail/daily")
+      .post("/api/mail/daily", { emailTo: session.user.email })
       .then((res) => {
         console.log(res);
       })
