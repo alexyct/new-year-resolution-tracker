@@ -8,7 +8,7 @@
   /* max-width: 40rem; */
 }
 .memo {
-  height: 12rem;
+  height: 100%;
   overflow-y: scroll;
   margin: 0.5rem;
 }
