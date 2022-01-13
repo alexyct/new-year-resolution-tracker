@@ -71,8 +71,6 @@ const Index = () => {
     };
   }, [windowWidth]);
 
-  console.log(resolutionData);
-
   useEffect(() => {
     if (session && status !== "loading") {
       // post resolution
@@ -108,7 +106,7 @@ const Index = () => {
         .get(`/api/reports/${session.user.id}?week=${weekToDate(week)}`)
         // .get(`/api/logs/${session.user.id}?week=${weekToDate(week)}`)
         .then((response) => {
-          // setResolutionData()
+          setResolutionData(response.data.resolution);
           // should get: graph data,
           setDashboardData(response.data.table);
           // memo data
