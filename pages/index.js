@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import axios from "@/store/axios";
+import axios from "axios";
 
 import SetResolutionPrompt from "@/components/SetResolutionPrompt/SetResolutionPrompt";
 import Dashboard from "@/components/Dashboard/";
@@ -56,13 +56,10 @@ const Index = () => {
   }, [windowWidth]);
 
   useEffect(() => {
-    console.log("useEffect called");
     if (session && status !== "loading") {
       // post resolution
       // const data = { resolutionData };
       setIsLoading(true);
-      console.log("is logged in");
-      console.log(`/api/reports/${session.user.id}?week=${weekToDate(week)}`);
       axios
         .get(`/api/reports/${session.user.id}?week=${weekToDate(week)}`)
         .then((response) => {
