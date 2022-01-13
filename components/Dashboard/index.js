@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import useGoogleCharts from 'store/useGoogleCharts';
-import { useRouter } from 'next/router';
-import classes from './index.module.css';
+import React, { useEffect, useState } from "react";
+import useGoogleCharts from "store/useGoogleCharts";
+import { useRouter } from "next/router";
+import classes from "./index.module.css";
 
-import Resolution from './Resolution/Resolution';
-import LogResolutionButton from './LogResolutionButton/LogResolutionButton';
-import Overview from './Overview/Overview';
-import Insights from './Insights/Insights';
-import WeekNav from './WeekNav/WeekNav';
-import Reflection from './Overview/Reflection/Reflection';
-import Button from 'components/Button/Button';
+import Resolution from "./Resolution/Resolution";
+import LogResolutionButton from "./LogResolutionButton/LogResolutionButton";
+import Overview from "./Overview/Overview";
+import Insights from "./Insights/Insights";
+import WeekNav from "./WeekNav/WeekNav";
+import Reflection from "./Overview/Reflection/Reflection";
+import Button from "components/Button/Button";
 
 const Dashboard = (props) => {
   const router = useRouter();
   const google = useGoogleCharts();
 
   const logDataButtonClickedHandler = () => {
-    router.push('/logData');
+    router.push("/logData");
   };
 
   const editMemoClickedHandler = () => {
@@ -34,12 +34,12 @@ const Dashboard = (props) => {
         </div>
       </div>
       <div className={classes.mainWrapper}>
-        <div>
+        <div className={classes.overviewWrapper}>
           <div className={classes.subHeadingWrapper}>
             <h2 className={classes.subHeading}>Stats</h2>
             <LogResolutionButton clicked={logDataButtonClickedHandler} />
           </div>
-          <div className={classes.overviewWrapper} id="overview_wrap">
+          <div className={classes.overview} id="overview_wrap">
             <Overview
               google={google}
               data={props.dashboardData}
@@ -47,9 +47,9 @@ const Dashboard = (props) => {
             />
           </div>
         </div>
-        <div>
+        <div className={classes.insightsWrapper}>
           <h2 className={classes.subHeading}>Insights</h2>
-          <div className={classes.insightsWrapper}>
+          <div>
             <Insights insights={props.insightsData} />
           </div>
         </div>

@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import axios from '@/store/axios';
+import React, { useState, useEffect } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "@/store/axios";
 
-import SetResolutionPrompt from '@/components/SetResolutionPrompt/SetResolutionPrompt';
-import Dashboard from '@/components/Dashboard/';
-import { getCurrWeek, weekToDate } from '@/lib/utils';
+import SetResolutionPrompt from "@/components/SetResolutionPrompt/SetResolutionPrompt";
+import Dashboard from "@/components/Dashboard/";
+import { getCurrWeek, weekToDate } from "@/lib/utils";
 
 const Index = () => {
   const { data: session, status } = useSession();
 
   const [week, setWeek] = useState(getCurrWeek());
   const [windowWidth, setWindowWidth] = useState(0);
-  const [isLoading, setIsLoading] = useState('false');
+  const [isLoading, setIsLoading] = useState("false");
 
   const [resolutionData, setResolutionData] = useState({
-    type: 'exercise',
-    units: 'hours',
+    type: "exercise",
+    units: "hours",
     quantity: 4,
-    frequency: 'week',
+    frequency: "week",
   });
 
   const [dashboardData, setDashboardData] = useState([]);
@@ -25,15 +25,15 @@ const Index = () => {
   const [insightsData, setInsightsData] = useState([]);
 
   const resolutionChangedHandler = (e, key) => {
-    if (key === 'units') {
+    if (key === "units") {
       setResolutionData((prevState) => {
         return { ...prevState, units: e.target.value };
       });
-    } else if (key === 'quantity') {
+    } else if (key === "quantity") {
       setResolutionData((prevState) => {
         return { ...prevState, quantity: e.target.value };
       });
-    } else if (key === 'frequency') {
+    } else if (key === "frequency") {
       setResolutionData((prevState) => {
         return { ...prevState, frequency: e.target.value };
       });
@@ -41,11 +41,11 @@ const Index = () => {
   };
 
   const signInClickedHandler = () => {
-    signIn('google');
+    signIn("google");
   };
 
   const signOutClickedHandler = () => {
-    signOut('google');
+    signOut("google");
   };
 
   const incrementWeek = (increment) => {
@@ -55,8 +55,9 @@ const Index = () => {
   };
 
   const resizeHandler = () => {
-    const temp = document.getElementById('overview_wrap')
-      ? document.getElementById('overview_wrap').clientWidth
+    const temp = document.getElementById("overview_wrap")
+      ? // ? document.getElementById('overview_wrap').clientWidth
+        document.body.clientWidth
       : 0;
     setTimeout(() => {
       setWindowWidth(temp);
@@ -64,16 +65,16 @@ const Index = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', resizeHandler);
+    window.addEventListener("resize", resizeHandler);
     return () => {
-      window.removeEventListener('resize', resizeHandler);
+      window.removeEventListener("resize", resizeHandler);
     };
   }, [windowWidth]);
 
   console.log(resolutionData);
 
   useEffect(() => {
-    if (session && status !== 'loading') {
+    if (session && status !== "loading") {
       // post resolution
       // const data = { resolutionData };
       setIsLoading(true);
@@ -122,12 +123,12 @@ const Index = () => {
           console.log(error);
         });
     } else {
-      console.log('no session');
+      console.log("no session");
     }
   }, [session, status, week]);
 
   let renderedPage = null;
-  if (session && status !== 'loading') {
+  if (session && status !== "loading") {
     renderedPage = (
       <Dashboard
         insightsData={insightsData}
@@ -141,7 +142,7 @@ const Index = () => {
       />
     );
   } else {
-    console.log('not logged in');
+    console.log("not logged in");
     renderedPage = (
       <SetResolutionPrompt
         resolutionData={resolutionData}

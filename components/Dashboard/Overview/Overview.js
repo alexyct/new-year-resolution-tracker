@@ -1,7 +1,7 @@
-import React from 'react';
-import classes from './Overview.module.css';
+import React from "react";
+import classes from "./Overview.module.css";
 
-import BarGraph from './BarGraph';
+import BarGraph from "./BarGraph";
 
 const Overview = (props) => {
   //   process data
@@ -52,7 +52,7 @@ const Overview = (props) => {
   let minutesDiff = Math.floor((diffToGoal % 1) * 60);
 
   return (
-    <div>
+    <div className={classes.overview}>
       <h1 className={classes.overviewTitle}>Daily Average</h1>
       <div className={classes.hourCount}>
         <h1 className={classes.totalHours}>
@@ -62,7 +62,7 @@ const Overview = (props) => {
           className={[
             classes.diffLabel,
             diffSign == -1 ? classes.negative : classes.positive,
-          ].join(' ')}
+          ].join(" ")}
         >
           {diffSign == -1 ? <>&#11015;</> : <>&#11014;</>}
           {hoursDiff}h {minutesDiff}m from last week
