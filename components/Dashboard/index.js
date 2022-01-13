@@ -49,7 +49,7 @@ const Dashboard = (props) => {
         </div>
         <div className={classes.insightsWrapper}>
           <h2 className={classes.subHeading}>Insights</h2>
-          <div>
+          <div className={classes.insights}>
             <Insights insights={props.insightsData} />
           </div>
         </div>
