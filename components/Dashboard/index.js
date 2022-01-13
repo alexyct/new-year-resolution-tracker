@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
-import useGoogleCharts from "store/useGoogleCharts";
-import { useRouter } from "next/router";
-import classes from "./index.module.css";
+import React, { useEffect, useState } from 'react';
+import useGoogleCharts from 'store/useGoogleCharts';
+import { useRouter } from 'next/router';
+import classes from './index.module.css';
 
-import Resolution from "./Resolution/Resolution";
-import LogResolutionButton from "./LogResolutionButton/LogResolutionButton";
-import Overview from "./Overview/Overview";
-import Insights from "./Insights/Insights";
-import WeekNav from "./WeekNav/WeekNav";
-import Reflection from "./Overview/Reflection/Reflection";
-import Button from "components/Button/Button";
-
+import Resolution from './Resolution/Resolution';
+import LogResolutionButton from './LogResolutionButton/LogResolutionButton';
+import Overview from './Overview/Overview';
+import Insights from './Insights/Insights';
+import WeekNav from './WeekNav/WeekNav';
+import Reflection from './Overview/Reflection/Reflection';
+import Button from 'components/Button/Button';
 
 const Dashboard = (props) => {
   const router = useRouter();
   const google = useGoogleCharts();
 
   const logDataButtonClickedHandler = () => {
-    router.push("/logData");
+    router.push('/logData');
   };
 
   const editMemoClickedHandler = () => {
@@ -75,14 +74,11 @@ const Dashboard = (props) => {
       <div className={classes.note}>
         <h2 className={classes.subHeading}>Note for Hackathon Judges</h2>
         <div className={classes.noteWrapper}>
-          <p>
-            For judges of the hackathon: we know you probably don't have a week
-            to wait for our weekly automations to send, so click this button to
-            see a demo of our weekly automated email. It takes in all the logs
-            you have made and show you a summary of your progress this week,
-            generate insights to help you better acheive your resolution, and
-            prompt you to write a memo to reflect on your progress and keep up
-            the good work.
+          <p className={classes.note}>
+            We recognise that you may not have time to actually try to app and
+            wait a week for the automated reports. So if you sign in to the app,
+            you will see buttons that sends you a demo of the weekly automated
+            report (as well as demo of the daily reminders).
           </p>
         </div>
       </div>

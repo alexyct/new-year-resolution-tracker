@@ -1,125 +1,4 @@
-import { useSession, signIn, signOut } from "next-auth/react";
-
-import EmailGraph from "@/store/emailGraph";
-
-const demoChartData = {
-  type: "bar",
-  data: {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    datasets: [
-      {
-        type: "line",
-        label: "Average",
-        yAxisID: "y2",
-        data: [1, 1, 1, 1, 1, 1, 1],
-        borderColor: "rgb(128,128,128)",
-        fill: false,
-        pointRadius: 0,
-      },
-      {
-        type: "line",
-        label: "Target",
-        yAxisID: "y2",
-        data: [1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2],
-        borderColor: "rgb(255,0,0)",
-        fill: false,
-        pointRadius: 0,
-      },
-      {
-        label: "Running",
-        yAxisID: "y1",
-        backgroundColor: "rgb(99, 202, 110)",
-        data: [0.5, 0.6, 2, 2, 0, 0, 1, 5],
-      },
-      {
-        label: "Swimming",
-        yAxisID: "y1",
-        backgroundColor: "rgb(60, 185, 238)",
-        data: [0, 2, 1, 1.2, 1.2, 2.4, 0],
-      },
-    ],
-  },
-  options: {
-    legend: {
-      display: true,
-      position: "bottom",
-      align: "middle",
-      padding: 20,
-    },
-    scales: {
-      xAxes: [
-        {
-          stacked: true,
-          display: false,
-        },
-      ],
-      yAxes: [
-        {
-          id: "y1",
-          display: true,
-          position: "left",
-          stacked: true,
-          ticks: {
-            min: 0,
-            max: 4,
-            stepSize: 1,
-          },
-        },
-        {
-          id: "y2",
-          display: false,
-          position: "right",
-          ticks: {
-            min: 0,
-            max: 4,
-            stepSize: 1,
-          },
-        },
-      ],
-    },
-  },
-};
-
-function DemoMail() {
-  return (
-    <div>
-      <p>Hi NAME! Here is a pretty visual to show your progress this week:</p>
-      <EmailGraph />
-      <img
-        src={`https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}`}
-      />
-      <p>
-        Total hours. Comparison with last week. Chart of exercise every day,
-        with current average and target average plotted. Percentage break down
-        of exercise type. How are you doing in relation to your resolution.
-      </p>
-      <p>Some insights to help you better acheive your goals:</p>
-      <ul>
-        <li>
-          We noticed that on some days you do not exercise at all. Try to still
-          exercise for 5 minutes on these days so you build up a routine, which
-          makes it easier for you to not skip days when you actually have time.
-        </li>
-        <li>
-          You exercise quite late in the evenings. Although exercising is great,
-          physical acticitivies close to bedtime can make it difficult to fall
-          asleep by disrupting your heartrate.
-        </li>
-        <li>
-          Get an accountability partner (e.g. friend, family, colleague) to help
-          you stay on track. Studies show that you have are 33% more likely to
-          complete a goal if you commit to someone.
-        </li>
-      </ul>
-      <p>
-        Click <a href="https://nyrtracker.vercel.app">here</a> to write a memo
-        on your progress this week. Journaling is a great way to improve your
-        chances of suceeding at your new year resolutions.
-      </p>
-      <p>That&apos;s it - keep up the good work and see you next week!</p>
-    </div>
-  );
-}
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function TestPage() {
   const { data: session } = useSession();
@@ -127,9 +6,9 @@ export default function TestPage() {
   const sendWeeklyEmail = async () => {
     try {
       const res = await fetch(`/api/mail/weekly/${session.user.id}`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: session.user.name,
@@ -146,9 +25,9 @@ export default function TestPage() {
   const sendDemoEmail = async () => {
     try {
       const res = await fetch(`/api/mail/demo`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           emailTo: session.user.email,
@@ -164,9 +43,9 @@ export default function TestPage() {
   const sendDailyEmail = async () => {
     try {
       const res = await fetch(`/api/mail/daily`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           emailTo: session.user.email,
@@ -210,15 +89,13 @@ export default function TestPage() {
         <button onClick={() => sendWeeklyEmail()}>
           Send Weekly Report Now
         </button>
-        <EmailGraph />
-        <DemoMail />
       </>
     );
   }
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn("google")}>Sign in</button>
+      <button onClick={() => signIn('google')}>Sign in</button>
     </>
   );
 }

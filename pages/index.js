@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import axios from 'axios';
 
-import SetResolutionPrompt from "@/components/SetResolutionPrompt/SetResolutionPrompt";
-import Dashboard from "@/components/Dashboard/";
-import { getCurrWeek, weekToDate } from "@/lib/utils";
-import sendDemoEmail from "./test.js";
+import SetResolutionPrompt from '@/components/SetResolutionPrompt/SetResolutionPrompt';
+import Dashboard from '@/components/Dashboard/';
+import { getCurrWeek, weekToDate } from '@/lib/utils';
+import sendDemoEmail from './test.js';
 
 const Index = () => {
   const { data: session, status } = useSession();
 
   const [week, setWeek] = useState(getCurrWeek());
   const [windowWidth, setWindowWidth] = useState(0);
-  const [isLoading, setIsLoading] = useState("false");
+  const [isLoading, setIsLoading] = useState('false');
 
   const [averageData, setAverageData] = useState(0);
   const [resolutionData, setResolutionData] = useState({
-    type: "exercise",
-    units: "hours",
+    type: 'exercise',
+    units: 'hours',
     quantity: 4,
-    frequency: "week",
+    frequency: 'week',
   });
 
   const [dashboardData, setDashboardData] = useState([]);
@@ -27,11 +27,11 @@ const Index = () => {
   const [insightsData, setInsightsData] = useState([]);
 
   const signInClickedHandler = () => {
-    signIn("google");
+    signIn('google');
   };
 
   const signOutClickedHandler = () => {
-    signOut("google");
+    signOut('google');
   };
 
   const incrementWeek = (increment) => {
@@ -41,7 +41,7 @@ const Index = () => {
   };
 
   const resizeHandler = () => {
-    const temp = document.getElementById("overview_wrap")
+    const temp = document.getElementById('overview_wrap')
       ? // ? document.getElementById('overview_wrap').clientWidth
         document.body.clientWidth
       : 0;
@@ -50,33 +50,69 @@ const Index = () => {
     }, 200);
   };
 
-  const weeklyButtonClickedHandler = async () => {
-    axios
-      .post("/api/mail/demo")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+  // const weeklyButtonClickedHandler = async () => {
+  //   axios
+  //     .post("/api/mail/demo")
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  // const dailyButtonClickedHandler = async () => {
+  //   axios
+  //     .post("/api/mail/daily")
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  const sendDemoEmail = async () => {
+    try {
+      const res = await fetch(`/api/mail/demo`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          emailTo: session.user.email,
+        }),
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      return;
+    }
   };
 
-  const dailyButtonClickedHandler = async () => {
-    axios
-      .post("/api/mail/daily")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+  const sendDailyEmail = async () => {
+    try {
+      const res = await fetch(`/api/mail/daily`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          emailTo: session.user.email,
+        }),
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      return;
+    }
   };
 
   useEffect(() => {
-    window.addEventListener("resize", resizeHandler);
+    window.addEventListener('resize', resizeHandler);
     return () => {
-      window.removeEventListener("resize", resizeHandler);
+      window.removeEventListener('resize', resizeHandler);
     };
   }, [windowWidth]);
 
   useEffect(() => {
-    if (session && status !== "loading") {
+    if (session && status !== 'loading') {
       // post resolution
       // const data = { resolutionData };
       setIsLoading(true);
@@ -101,12 +137,12 @@ const Index = () => {
           console.log(error);
         });
     } else {
-      console.log("no session");
+      console.log('no session');
     }
   }, [session, status, week]);
 
   let renderedPage = null;
-  if (session && status !== "loading") {
+  if (session && status !== 'loading') {
     renderedPage = (
       <Dashboard
         averageData={averageData}
@@ -114,8 +150,8 @@ const Index = () => {
         resolutionData={resolutionData}
         dashboardData={dashboardData}
         memoData={memoData}
-        weeklyButtonClickedHandler={weeklyButtonClickedHandler}
-        dailyButtonClickedHandler={dailyButtonClickedHandler}
+        weeklyButtonClickedHandler={sendDemoEmail}
+        dailyButtonClickedHandler={sendDailyEmail}
         signOutClickedHandler={signOutClickedHandler}
         incrementWeek={incrementWeek}
         week={week}
@@ -123,7 +159,7 @@ const Index = () => {
       />
     );
   } else {
-    console.log("not logged in");
+    console.log('not logged in');
     renderedPage = (
       <SetResolutionPrompt
         resolutionData={resolutionData}
