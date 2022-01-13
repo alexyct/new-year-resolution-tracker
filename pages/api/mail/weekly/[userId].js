@@ -2,21 +2,33 @@ import ReactDOMServer from 'react-dom/server';
 import nodemailer from 'nodemailer';
 import { ObjectId } from 'mongodb';
 import clientPromise from '@/lib/mongodb';
-import { setToMonday } from '@/lib/utils';
+import {
+  setToMonday,
+  getTarget,
+  getAverage,
+  generateInsights,
+} from '@/lib/utils';
 
-function WeeklyMail({ name, summary, insights }) {
+function convertTime(num) {
+  let hours = Math.floor(num);
+  let minutes = Math.floor((num % 1) * 60);
+  return hours + 'h ' + minutes + 'min';
+}
+
+function WeeklyMail({ name, averaged, exceeded, improved, insights }) {
   return (
     <div>
-      <p>Hi {name}! Here is a pretty visual to show your progress this week:</p>
-      {/* {logs.map((log) => (
-        <p key={log._id}>{log.type}</p>
-      ))} */}
-      <p>{summary}</p>
+      <p>Hi {name} - You did great this week! You:</p>
+      <ul>
+        <li>Exercised for {averaged} this week.</li>
+        <li>Exceed your goal by {exceeded}.</li>
+        <li>Did {improved} more exercise than last week.</li>
+      </ul>
       <p>Some insights to help you better acheive your goals:</p>
       <ul>
-        {insights.map((insight) => (
-          <li key={insight.key}>{insight.content}</li>
-        ))}
+        {insights.map((insight, i) => {
+          return <li key={i}>{insight}</li>;
+        })}
       </ul>
       <p>
         Click <a href="https://nyrtracker.vercel.app">here</a> to write a memo
@@ -38,47 +50,65 @@ export default async function handler(req, res) {
   const client = await clientPromise;
   const db = client.db('tracker');
   const { userId } = req.query;
+  const week = setToMonday(new Date());
+  const endDate = setToMonday(new Date());
+  const prevWeek = setToMonday(new Date());
+  new Date(endDate.setDate(endDate.getDate() + 7));
+  new Date(prevWeek.setDate(prevWeek.getDate() - 7));
 
-  // Get data from database
+  const resolution = await db.collection('resolutions').findOne({
+    userId: ObjectId(userId),
+  });
+
   const logs = await db
     .collection('logs')
     .find({
       userId: ObjectId(userId),
       startDateTime: {
-        $gte: new Date(
-          new Date().setHours(0, 0, 0, 0) - 6 * 60 * 60 * 24 * 1000
-        ),
+        $gt: week,
+      },
+      endDateTime: {
+        $lte: endDate,
       },
     })
-    .sort({ _id: -1 })
+    .sort({ startDateTime: -1 })
     .toArray();
 
-  // Generate summary:
-  const summary = 'this is a summary based on the logs';
+  const prevLogs = await db
+    .collection('logs')
+    .find({
+      userId: ObjectId(userId),
+      startDateTime: {
+        $gt: prevWeek,
+      },
+      endDateTime: {
+        $lte: week,
+      },
+    })
+    .sort({ startDateTime: -1 })
+    .toArray();
 
-  // Generate insights
-  const insights = [
-    { key: 1, content: 'you should exercise earlier' },
-    { key: 2, content: 'you should exercise for 5 minutes every day' },
-    { key: 3, content: 'you should exercise for 5 minutes every day' },
-  ];
+  const average = getAverage(logs);
+  const averaged = convertTime(average);
+  const exceeded = convertTime(average - getTarget(resolution) / 7);
+  const improved = convertTime(average - getAverage(prevLogs));
 
-  // Save report to database
-  const report = await db.collection('reports').insertOne({
-    userId: ObjectId(userId),
-    week: setToMonday(new Date()),
-    // dateCreated: new Date(),
-  });
+  const insights = generateInsights(logs);
 
   // Define email containing report
-
   let mailOptions = {
     from: 'newyearresolutiontracker@gmail.com',
     to: req.body.emailTo,
     subject: 'You weekly report is here!',
     text: 'Here is a summary of your progress this week.',
     html: await ReactDOMServer.renderToString(
-      <WeeklyMail name={req.body.name} summary={summary} insights={insights} />
+      <WeeklyMail
+        name={req.body.name}
+        averaged={averaged}
+        exceeded={exceeded}
+        improved={improved}
+        insights={insights}
+      />
     ),
   };
   let transporter = nodemailer.createTransport({

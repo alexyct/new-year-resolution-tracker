@@ -1,6 +1,5 @@
 import ReactDOMServer from 'react-dom/server';
 import nodemailer from 'nodemailer';
-import EmailGraph from 'store/emailGraph';
 
 const demoChartData = {
   type: 'bar',
@@ -46,6 +45,10 @@ const demoChartData = {
       align: 'middle',
       padding: 20,
     },
+    title: {
+      display: true,
+      text: 'Daily Average: 1 hour',
+    },
     scales: {
       xAxes: [
         {
@@ -80,7 +83,7 @@ const demoChartData = {
   },
 };
 
-const test = {
+const testChartData = {
   type: 'bar',
   data: {
     labels: ['Q1', 'Q2', 'Q3', 'Q4'],
@@ -94,33 +97,20 @@ const test = {
 function DemoMail() {
   return (
     <div>
-      <p>Hi NAME! Here is a pretty visual to show your progress this week:</p>
-      <EmailGraph />
-      <img
+      <p>Hi there - You did great this week! You:</p>
+      <ul>
+        <li>Exercised for 7 hours and 20 minutes this week.</li>
+        <li>Exceed your goal by 1 hour and 20 minutes.</li>
+        <li>Did 2 hours more exercise than last week.</li>
+      </ul>
+      {/* <img
         width="600"
         height="800"
         style={{ display: 'block' }}
         src={`https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}`}
         alt={`https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}`}
         title="Demo Chart"
-      />
-      <div
-        style={{
-          height: '24px',
-          width: '24px',
-          display: 'block',
-          background: `url(
-            https://quickchart.io/chart?c=${JSON.stringify(demoChartData)}
-          )`,
-          backgroundSize: 'contain',
-        }}
-      ></div>
-      {/* <img src={`https://quickchart.io/chart?c=${JSON.stringify(test)}`} /> */}
-      <p>
-        Total hours. Comparison with last week. Chart of exercise every day,
-        with current average and target average plotted. Percentage break down
-        of exercise type. How are you doing in relation to your resolution.
-      </p>
+      /> */}
       <p>Some insights to help you better acheive your goals:</p>
       <ul>
         <li>

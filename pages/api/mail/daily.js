@@ -5,9 +5,8 @@ function DailyMail({ email }) {
   return (
     <div>
       <p>
-        Hi {email}! Click{' '}
-        <a href="https://nyrtracker.vercel.app/logData">here</a> to log your
-        data
+        Hi there! Click <a href="https://nyrtracker.vercel.app/logData">here</a>{' '}
+        to log your data
       </p>
     </div>
   );
