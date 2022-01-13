@@ -1,5 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 
+import EmailGraph from '@/store/emailGraph';
+
 export default function TestPage() {
   const { data: session } = useSession();
 
@@ -89,6 +91,7 @@ export default function TestPage() {
         <button onClick={() => sendWeeklyEmail()}>
           Send Weekly Report Now
         </button>
+        <EmailGraph />
       </>
     );
   }
