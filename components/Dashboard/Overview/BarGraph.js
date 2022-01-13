@@ -29,11 +29,13 @@ const BarGraph = (props) => {
     series: {
       0: {
         type: "line",
-        lineDashStyle: [4, 4],
+        lineWidth: 1.5,
+        // lineDashStyle: [4, 4],
       },
       1: {
         type: "line",
-        lineDashStyle: [4, 4],
+        lineWidth: 1.5,
+        // lineDashStyle: [4, 4],
       },
     },
     curveType: "function",
