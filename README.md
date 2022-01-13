@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Overview of My Submission
 
-## Getting Started
+For the MongoDB Atlas Hackathon, we created a web app to help you track and achieve your new year resolutions in 2022! Link to the project: [https://nyrtracker.vercel.app](https://nyrtracker.vercel.app/).
 
-First, run the development server:
+It is difficult staying on top of your new year resolutions. Two key reasons why people, including myself, fail to stay on top of their resolutions include:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Forgetting about them over time
+- Not knowing how to better achieve
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Therefore, our web app uses MongoDB to address these issues by:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Sending daily reminders for you to log data and track your progress
+- Sending automated weekly reports to summarise your progress, provide insights on how you can better achieve your goals, and prompt you to write journals.
+- Providing a dashboard to visualise your data/progress, display the insights in your weekly report, and provide a space to add memos about your resolutions.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+This is an effective way to automate the data collection and analysis process that many of us go through (and forget about over time). Given the time constraints of the hackathon, our web app only supports exercising as a new year resolution.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Try out the app on [https://nyrtracker.vercel.app/](https://nyrtracker.vercel.app/) by signing up with your Google account. Alternatively, you can check out screenshots and a demo video below in this post. Enjoy!
 
-## Learn More
+### Submission Category:
 
-To learn more about Next.js, take a look at the following resources:
+Automation Innovation: We use MongoDB Atlas Serverless Instances to automate the weekly data aggregation and analysis I perform regarding my new year resolution progress tracking.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Link to Code
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+{% github https://github.com/alexyct/new-year-resolution-tracker %}
 
-## Deploy on Vercel
+### Additional Resources / Info
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Some technologies we used:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Next.js](https://nextjs.org/) & [React](https://reactjs.org/)
+- [MongoDB](https://mongodb.com/) Atlas Serverless Instances
+- [Axios](https://axios-http.com/docs/intro) for HTTP requests
+- [Next-auth](https://next-auth.js.org/) for authentication
+- [Nodemailer](https://nodemailer.com/) & [Easycron](https://www.easycron.com/) for daily and weekly emails
+- [Google Charts](https://developers.google.com/chart) for data visualisation
+
+**Some screenshots of the app:**
+Dashboard
+![Dashboard](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zhtl78mvafrq3ngbr5uz.png)
+
+Add Data Screen
+![Add Data Screen](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zaeqq0tq79gq7oagsp7h.png)
+
+Add Memo Screen
+![Add Memo Screen](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3l9hoyo735qjwjz77sj7.png)
+
+Weekly Report Email
+![Weekly Report Email](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n0m7p087a4tix2zlbjt3.png)
+
+On Mobile
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oseej9f8ds68itltsecq.png)
+
+For judges of the Hackathon, we recognise that you may not have time to actually try to app and wait a week for the automated reports. So if you sign in to the app, you will see buttons that sends you a demo of the weekly automated report (as well as demo of the daily reminders).
+
+Hope you like our project!
