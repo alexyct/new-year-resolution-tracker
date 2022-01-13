@@ -23,7 +23,7 @@ const Index = () => {
   let today = new Date();
   today.setHours(0, 0, 0, 0);
   const [date, setDate] = useState(today);
-  const [exercise, setExercise] = useState("walking");
+  const [exercise, setExercise] = useState("Walking");
   const [startTime, setStartTime] = useState("00:00");
   const [endTime, setEndTime] = useState("00:00");
   const [errorMessage, setErrorMessage] = useState(null);
