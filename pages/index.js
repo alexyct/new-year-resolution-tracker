@@ -56,13 +56,13 @@ const Index = () => {
   }, [windowWidth]);
 
   useEffect(() => {
-    console.log('useEffect called')
+    console.log("useEffect called");
     if (session && status !== "loading") {
       // post resolution
       // const data = { resolutionData };
       setIsLoading(true);
       console.log("is logged in");
-
+      console.log(`/api/reports/${session.user.id}?week=${weekToDate(week)}`);
       axios
         .get(`/api/reports/${session.user.id}?week=${weekToDate(week)}`)
         // .get(`/api/logs/${session.user.id}?week=${weekToDate(week)}`)
