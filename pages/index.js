@@ -13,6 +13,7 @@ const Index = () => {
   const [windowWidth, setWindowWidth] = useState(0);
   const [isLoading, setIsLoading] = useState("false");
 
+  const [averageData, setAverageData] = useState(0);
   const [resolutionData, setResolutionData] = useState({
     type: "exercise",
     units: "hours",
@@ -70,6 +71,8 @@ const Index = () => {
           setMemoData(response.data.report[0]);
 
           setInsightsData(response.data.insights);
+
+          setAverageData(response.data.average);
           setIsLoading(false);
 
           console.log(response);
@@ -87,6 +90,7 @@ const Index = () => {
   if (session && status !== "loading") {
     renderedPage = (
       <Dashboard
+        averageData={averageData}
         insightsData={insightsData}
         resolutionData={resolutionData}
         dashboardData={dashboardData}

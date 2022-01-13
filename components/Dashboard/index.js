@@ -42,6 +42,7 @@ const Dashboard = (props) => {
           <div className={classes.overview} id="overview_wrap">
             <Overview
               google={google}
+              lastWeek={props.averageData}
               data={props.dashboardData}
               width={props.width}
             />
