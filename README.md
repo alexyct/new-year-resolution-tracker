@@ -37,6 +37,7 @@ Automation Innovation: We use MongoDB Atlas Serverless Instances to automate the
 - [Google Charts](https://developers.google.com/chart) for data visualisation
 
 **Some screenshots of the app:**
+
 Dashboard
 ![Dashboard](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zhtl78mvafrq3ngbr5uz.png)
 
