@@ -27,6 +27,7 @@ const Index = () => {
   const [startTime, setStartTime] = useState("00:00");
   const [endTime, setEndTime] = useState("00:00");
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const logData = {
     type: exercise,
@@ -54,6 +55,7 @@ const Index = () => {
   };
 
   const logButtonClickedHandler = () => {
+    setIsLoading(true);
     setErrorMessage(null);
     const diff =
       parseInt(endTime.split(":")[0]) +
@@ -63,6 +65,7 @@ const Index = () => {
 
     if (diff <= 0) {
       setErrorMessage("please enter valid time range");
+      setIsLoading(false);
       return;
     }
 
@@ -97,24 +100,29 @@ const Index = () => {
       .post(`/api/logs/${session.user.id}`, data)
       .then((response) => {
         console.log(response);
+        setIsLoading(false);
         router.push("/logConfirmation");
       })
       .catch((error) => {
         console.log(error);
       });
+    setIsLoading(false);
   };
 
   return (
     <div>
-      <LogData
-        date={convertDayFormat(date)}
-        logData={logData}
-        exerciseChangedHandler={exerciseChangedHandler}
-        startTimeChangedHandler={startTimeChangedHandler}
-        endTimeChangedHandler={endTimeChangedHandler}
-        logButtonClickedHandler={logButtonClickedHandler}
-        dateChangedHandler={dateChangedHandler}
-      />
+      {!isLoading && (
+        <LogData
+          date={convertDayFormat(date)}
+          logData={logData}
+          exerciseChangedHandler={exerciseChangedHandler}
+          startTimeChangedHandler={startTimeChangedHandler}
+          endTimeChangedHandler={endTimeChangedHandler}
+          logButtonClickedHandler={logButtonClickedHandler}
+          dateChangedHandler={dateChangedHandler}
+          isLoading={isLoading}
+        />
+      )}
       <p className={classes.error}>{errorMessage}</p>
     </div>
   );
