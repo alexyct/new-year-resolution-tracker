@@ -51,39 +51,21 @@ const Index = () => {
   };
 
   const weeklyButtonClickedHandler = async () => {
-    try {
-      const res = await fetch(`/api/mail/demo`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          emailTo: session.user.email,
-        }),
-      });
-    } catch (e) {
-      console.log(e);
-    } finally {
-      return;
-    }
+    axios
+      .post("/api/mail/demo")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   const dailyButtonClickedHandler = async () => {
-    try {
-      const res = await fetch(`/api/mail/demo`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          emailTo: session.user.email,
-        }),
-      });
-    } catch (e) {
-      console.log(e);
-    } finally {
-      return;
-    }
+    axios
+      .post("/api/mail/daily")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
