@@ -24,22 +24,6 @@ const Index = () => {
   const [memoData, setMemoData] = useState([]);
   const [insightsData, setInsightsData] = useState([]);
 
-  const resolutionChangedHandler = (e, key) => {
-    if (key === "units") {
-      setResolutionData((prevState) => {
-        return { ...prevState, units: e.target.value };
-      });
-    } else if (key === "quantity") {
-      setResolutionData((prevState) => {
-        return { ...prevState, quantity: e.target.value };
-      });
-    } else if (key === "frequency") {
-      setResolutionData((prevState) => {
-        return { ...prevState, frequency: e.target.value };
-      });
-    }
-  };
-
   const signInClickedHandler = () => {
     signIn("google");
   };
