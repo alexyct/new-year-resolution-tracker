@@ -31,6 +31,9 @@ const Overview = (props) => {
         }
       }
     }
+    for (let i = 1; i < data.length; i++) {
+      data[i][1] = data[i][1] / 7;
+    }
   }
   let totalHours = 0;
   // TODO: get from props
