@@ -43,9 +43,12 @@ const BarGraph = (props) => {
     legend: { position: "bottom" },
   };
   useEffect(() => {
-    console.log("redrawing");
     setErrorMessage(null);
-    if (props.google) {
+    if (props.data && props.data.length === 0) {
+      setErrorMessage("loading");
+      return;
+    }
+    if (props.data && props.google) {
       let data;
       try {
         data = google.visualization.arrayToDataTable(props.data);
@@ -75,9 +78,10 @@ const BarGraph = (props) => {
   }, [props.width]);
 
   return (
-    <div>
-      <div className={classes.chart} id="chart_div" />
-      <p className={classes.error}>{errorMessage}</p>
+    <div style={{ position: "relative" }}>
+      <div className={classes.chart} id="chart_div">
+        <p className={classes.error}>{errorMessage}</p>
+      </div>
     </div>
   );
 };
