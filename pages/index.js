@@ -65,7 +65,6 @@ const Index = () => {
       console.log(`/api/reports/${session.user.id}?week=${weekToDate(week)}`);
       axios
         .get(`/api/reports/${session.user.id}?week=${weekToDate(week)}`)
-        // .get(`/api/logs/${session.user.id}?week=${weekToDate(week)}`)
         .then((response) => {
           setResolutionData(response.data.resolution);
           // should get: graph data,
