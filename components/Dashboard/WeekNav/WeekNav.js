@@ -1,8 +1,8 @@
-import React from "react";
-import classes from "./WeekNav.module.css";
+import React from 'react';
+import classes from './WeekNav.module.css';
 
-import Button from "components/Button/Button";
-import { getCurrWeek } from "pages";
+import Button from 'components/Button/Button';
+import { getCurrWeek } from '@/lib/utils';
 
 const WeekNav = (props) => {
   let prevButton = (

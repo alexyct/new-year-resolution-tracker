@@ -1,9 +1,9 @@
-import React from "react";
-import classes from "./AddMemo.module.css";
-import { useRouter } from "next/router";
+import React from 'react';
+import classes from './AddMemo.module.css';
+import { useRouter } from 'next/router';
 
-import Button from "components/Button/Button";
-import { getCurrWeek } from "pages";
+import Button from 'components/Button/Button';
+import { getCurrWeek } from '@/lib/utils';
 
 const AddMemo = (props) => {
   const router = useRouter();
@@ -19,20 +19,20 @@ const AddMemo = (props) => {
     router.push(`/addMemo?week=${getCurrWeek()}`);
   }
   start =
-    String(start.getDate()).padStart(2, "0") +
-    "/" +
-    String(start.getMonth() + 1).padStart(2, "0");
+    String(start.getDate()).padStart(2, '0') +
+    '/' +
+    String(start.getMonth() + 1).padStart(2, '0');
   end =
-    String(end.getDate()).padStart(2, "0") +
-    "/" +
-    String(end.getMonth() + 1).padStart(2, "0");
+    String(end.getDate()).padStart(2, '0') +
+    '/' +
+    String(end.getMonth() + 1).padStart(2, '0');
 
   return (
     <div className={classes.memoBackdrop}>
       <div className={classes.backButton}>
         <Button
           clicked={() => {
-            router.push("/");
+            router.push('/');
           }}
           color="white"
           narrow

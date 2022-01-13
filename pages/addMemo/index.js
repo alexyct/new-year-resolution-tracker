@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import AddMemo from 'components/AddMemo/AddMemo';
 import axios from 'axios';
-import { weekToDate } from 'pages';
+import { weekToDate } from '@/lib/utils';
 
 const Index = () => {
   const router = useRouter();
