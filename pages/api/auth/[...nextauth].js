@@ -15,6 +15,9 @@ export default NextAuth({
   ],
   database: process.env.MONGODB_URI,
   secret: process.env.SECRET,
+  pages: {
+    newUser: '/setResolution',
+  },
   callbacks: {
     async session({ session, user }) {
       session.user.id = user.id;
