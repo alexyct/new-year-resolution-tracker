@@ -76,9 +76,9 @@ const Dashboard = (props) => {
         <div className={classes.noteWrapper}>
           <p className={classes.note}>
             We recognise that you may not have time to actually try to app and
-            wait a week for the automated reports. So if you sign in to the app,
-            you will see buttons that sends you a demo of the weekly automated
-            report (as well as demo of the daily reminders).
+            wait a week for the automated reports. So you can directly use the
+            buttons below to send yourself a demo of the weekly automated report
+            and the daily reminder.
           </p>
         </div>
       </div>
